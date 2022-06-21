@@ -1,0 +1,25 @@
+
+.image {
+  width: 50%;
+  margin: 3em auto;
+}
+
+:root {
+  height: 100%;
+}
+
+.thank-you-container, .thank-you-content {
+
+  p {
+    font-size: 15px;
+    //font-weight: 100;
+  }
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  ion-button {
+    margin-top: auto;
+  }
+}

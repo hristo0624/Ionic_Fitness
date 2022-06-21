@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end" (click)="mealInfo()">
+      <ion-icon color="primary" name="help" size="large"></ion-icon>
+    </ion-buttons>
+    <ion-title>My Nutrition</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content *ngIf="transphormer">
+  <app-calendar [minDate]="minDate" [format]="'dddd, M/D'" (dateChange)="onDateChange($event)"></app-calendar>
+  <ion-card *ngIf="latestWeight && (getNutritionType() === 'Calorie / Macro counting' || getNutritionType() === 'Macro meal plan')">
+    <ion-card-header (click)="fullHeight = !fullHeight">
+      <div class="flex">
+        <div class="title">My Macros</div>
+        <div>
+        <ion-icon [name]="fullHeight ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+        </div>
+      </div>
+    </ion-card-header>
+    <ion-card-content *ngIf="fullHeight" class="full-height">
+      <app-macro [bmr]="bmr" *ngIf="bmr"></app-macro>
+    </ion-card-content>
+  </ion-card>
+  <div>
+    <ion-list *ngIf="latestWeight">
+      <app-portion-control
+              [showAmounts]="shouldShowAmounts"
+              [activeParents]="activeParents"
+              (pickedItem)="pickItem($event)"
+              (saveNutrition)="updateNutritionValue()"
+              *ngIf="getNutritionType() === 'Portion control' || getNutritionType() === 'Macro meal plan'"
+              [showPdf]="getNutritionType() === 'Portion control'"
+      ></app-portion-control>
+        <app-calorie-counting
+        [activeParents]="activeParents"
+        *ngIf="getNutritionType() === 'Calorie / Macro counting'"
+        (contentUpdated)="updateMacroCounting($event)"
+      >
+
+      </app-calorie-counting>
+    </ion-list>
+  </div>
+</ion-content>

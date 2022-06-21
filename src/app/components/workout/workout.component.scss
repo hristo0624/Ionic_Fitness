@@ -1,0 +1,92 @@
+.workoutWrapper {
+  width: 100%;
+  font-size: var(--default-font-size);
+  &.incomplete {
+    background: rgb(251,221,219);
+    //background: linear-gradient(90deg, rgba(251,239,230,1) 0%, rgba(251,221,219,1) 100%);
+  }
+  &.restDay {
+    background: rgb(220,231,252);
+    //background: linear-gradient(90deg, rgba(220,231,252,1) 0%, rgba(231,246,251,1) 100%);
+  }
+  .exgroupWrapper {
+    width: 100%;
+
+
+
+    .header {
+      width: 100%;
+      height: 50px;
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      padding-left: 20px;
+    }
+
+    .exerciseItem {
+      width: 100%;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+
+      .normalDesc {
+        display: flex;
+        align-items: baseline;
+        margin-left: var(--default-margin);
+        margin-right: var(--default-margin);
+
+        .bluePoint::before {
+          content: '•';
+          color: var(--ion-color-primary);
+          margin-right: 8px;
+        }
+
+        .desc {
+          flex: 1;
+          align-items: baseline;
+          display: flex;
+          flex-wrap: wrap;
+
+          .itemLeft {
+            flex: auto 0;
+            margin-right: calc(var(--default-margin) * 1.5);
+            text-align: left;
+          }
+
+          .itemRight {
+            flex: 1;
+            color: var(--grey-mid);
+            font-size: calc(var(--default-font-size) * .8);
+            text-align: right;
+          }
+        }
+      }
+
+      .longDesc {
+        text-align: right;
+        font-size: calc(var(--default-font-size) * .8);
+        margin: calc(var(--default-margin) * .5)
+                var(--default-margin)
+                calc(var(--default-margin) * .75)
+                calc(var(--default-margin) * 2);
+      }
+    }
+    padding-bottom: 1px;
+  }
+
+  .emptyWorkout {
+    background-color: var(--ion-color-light);
+  }
+
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.notes {
+  margin: 20px 20px 0 20px;
+  .noteText {
+    font-style: italic;
+  }
+}

@@ -1,0 +1,153 @@
+ion-content {
+  --background: #f7f9fc;
+}
+
+ion-label {
+  --border-width: 0;
+}
+ion-item {
+  --inner-border-width: 0;
+}
+ion-icon {
+  color: var(--ion-color-icon);
+  font-size: var(--app-paragraph-size);
+}
+
+ion-item.instructions {
+  color: var(--ion-1p-blue-darker);
+}
+
+.rest-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 60vh;
+  justify-content: center;
+
+  h3 {
+    color: var(--ion-1p-darker);
+    font-family: var(--ion-1p-font-dominant);
+    text-transform: uppercase;
+  }
+
+  p {
+    color: var(--ion-1p-light-bg);
+  }
+}
+
+.extra {
+  justify-content: center;
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+ion-item-group {
+  &:not(:first-child) {
+    margin-top: 8px;
+  }
+}
+
+ion-item-divider {
+  --min-height: 32px;
+  --background: var(--ion-color-brand);
+  --color: var(--ion-color-primary-contrast);
+  ion-label {
+    margin: 8px 0;
+  }
+  ion-label[slot="start"] {
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+  ion-label[slot="end"] {
+    font-weight: normal;
+    margin-right: 16px;
+  }
+}
+
+.workout-name {
+  text-align: center;
+  text-transform: uppercase;
+  color: #999;
+  font-weight: 900;
+  line-height: 3em;
+  font-size: 12px;
+  background: #fff;
+  &.completed {
+    color: var(--ion-color-success);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ion-icon {
+      margin-right: 8px;
+    }
+  }
+}
+
+ion-item {
+  .item-inner {
+    border:0;
+  }
+  .item-native {
+    border-width: 4px 0 0 0;
+    border-style: solid;
+    border-color: var(--ion-1p-light-blue);
+  }
+  &.instructions {
+    ion-label {
+      font-weight: normal;
+      font-size: 12px;
+    }
+  }
+  &.exercise {
+    --border-width: 4px 0 0 0;
+    --border-color: var(--ion-1p-light-blue);
+    ion-label {
+      font-size: 14px;
+    }
+    p.instructions {
+      color: var(--ion-color-brand);
+      font-weight: 700;
+    }
+    .name {
+      text-transform: uppercase;
+      letter-spacing: -0.3px;
+    }
+  }
+}
+
+.repeat-instructions {
+  --min-height: 32px;
+  --background: var(--ion-1p-light-blue);
+  ion-label {
+    text-align: center;
+    font-size: 13px;
+    margin: 4px 0;
+  }
+}
+
+.exercise div[slot="end"] {
+  margin-left: 16px;
+  ion-button {
+    --padding-start: 8px;
+    --padding-end: 8px;
+  }
+}
+
+.last-exercise-info {
+  padding: 6px 0 2px 0;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.on-home-workout {
+  font-size: 12px;
+  font-style: italic;
+  padding: 5px 16px;
+}

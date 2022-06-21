@@ -1,0 +1,42 @@
+<table class="content nutrition-detail-component">
+  <tr class="header">
+    <th>Date</th>
+    <th>Kcal</th>
+    <th>Protein</th>
+    <th>Carbs</th>
+    <th>Fats</th>
+  </tr>
+  <tbody class="listing" *ngIf="dayData.length > 0">
+  <ng-container *ngFor="let macro of sortedFood">
+    <tr class="data day" *ngIf="macro.calories !== 0" (click)="expandDate(macro)"
+        [ngClass]="{expanded: this.expansions[macro.track_date]}">
+      <td class="date">{{ macro.short_date }}</td>
+      <td class="calories">{{ macro.calories }}</td>
+      <td class="protein">{{ macro.protein }}</td>
+      <td class="carbs">{{ macro.carbs }}</td>
+      <td class="fats">{{ macro.fats}}</td>
+    </tr>
+    <tr class="data day empty" *ngIf="macro.calories === 0">
+      <td class="date">{{ macro.short_date }}</td>
+      <td class="message" colspan="4" text-center>No data.</td>
+    </tr>
+    <ng-container *ngIf="this.expansions[macro.track_date]" class="meals">
+      <tr *ngFor="let meal of macro.meals" class="meal">
+        <td class="meal-number">M #{{ meal.meal }}</td>
+        <td class="calories">{{ meal.calories }}</td>
+        <td class="protein">{{ meal.protein }}</td>
+        <td class="carbs">{{ meal.carbs }}</td>
+        <td class="fats">{{ meal.fats}}</td>
+      </tr>
+    </ng-container>
+  </ng-container>
+  </tbody>
+  <tbody *ngIf="dayData.length === 0" class="centered">
+  <tr>
+    <td colspan="5">No nutrition data available for the last 2 weeks.</td>
+  </tr>
+  </tbody>
+  <tfoot>
+    <tr><td colspan="5" text-center><small>Tap on any line to get daily breakdowns.</small></td></tr>
+  </tfoot>
+</table>

@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/live-streaming"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Live Stream</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<div class="live-stream">
+    <div *ngIf="liveStreamError" class="error">
+        <div><h4>Error</h4></div>
+        <div><p>{{ liveStreamError }}</p></div>
+        <ion-button (click)="setupLiveStreamVideo()">Retry
+            <ion-icon name="refresh" slot="start"></ion-icon>
+        </ion-button>
+    </div>
+    <div [style.display]="!liveStreamError && !settingUpLiveStream ? 'flex': 'none'" class="live-stream">
+        <div class="message-container" [style.display]="streamHasEnded ? 'flex': 'none'">
+            <div class="ended-message">This live stream has ended</div>
+        </div>
+        <app-video-player
+          *ngIf="video"
+          (playbackProblem)="playbackProblem()"
+          [video]="video"
+          [live]="true">
+        </app-video-player>
+        <div *ngIf="!liveStreamError" class="feed">
+            <div class="feed-item" [ngClass]="{sticky: feedItem.sticky, special: feedItem.special, 'slide-in': true}"
+                 *ngFor="let feedItem of sortedItems; trackBy: trackByFn; let i = $index;">
+                <div class="top">
+                    <div class="author"><ion-icon name="star" *ngIf="!feedItem.transphormer_id"></ion-icon><div>{{feedItem.author}}</div></div>
+                    <div class="timestamp" *ngIf="!feedItem.sticky">{{ localTimestamp(feedItem.updated_at) }}</div>
+                </div>
+                <div class="text">{{feedItem.text}}</div>
+            </div>
+        </div>
+        <div *ngIf="!liveStreamError && !streamHasEnded" id="message-entry" #messageContent>
+            <ion-textarea auto-grow #messageInput autocapitalize="on" [(ngModel)]="messageText" appAutoresize
+                          placeholder="Message"></ion-textarea>
+            <ion-button (click)="sendMessage()" type="submit" fill="clear">
+                <ion-icon name="send" slot="icon-only"></ion-icon>
+            </ion-button>
+        </div>
+    </div>
+</div>

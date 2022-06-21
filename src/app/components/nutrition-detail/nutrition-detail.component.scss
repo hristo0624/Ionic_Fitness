@@ -1,0 +1,95 @@
+:host {
+  width: 100%;
+}
+
+.nutrition-detail-component {
+  width: 100%;
+
+  tr:not(.header) {
+    background-color: var(--pale-grey);
+  }
+
+  th {
+    font-weight: normal;
+  }
+
+  td, th {
+    padding: calc(var(--default-margin)) calc(var(--default-margin));
+    text-align: center;
+    &:first-child {
+      text-align: left;
+      width: 33%
+    }
+  }
+
+  .day {
+    &:not(.date) {
+      font-weight: bold;
+    }
+    border: 0px solid var(--ice-blue);
+    border-width: 1px 0;
+  }
+
+  .day {
+    &.even {
+      .meals {
+        margin-bottom: 24px;
+
+        .even {
+          background: var(--app-alternating-even, #f3f3f3);
+        }
+
+        .odd {
+          background: var(--app-alternating-odd, #fafafa);
+        }
+      }
+
+      background: var(--app-alternating-even, var(--ion-color-shade));
+    }
+
+    &.odd {
+      background: var(--app-alternating-even, var(--ion-color-light));
+
+      .meals {
+        margin-bottom: 8px;
+
+        .even {
+          background: var(--app-alternating-even, #fafafa);
+        }
+
+        .odd {
+          background: var(--app-alternating-odd, #ffffff);
+        }
+      }
+    }
+
+  }
+
+  .header {
+    font-size: 10pt;
+    color: var(--grey-mid);
+    background-color: revert;
+  }
+
+  .centered {
+    text-align: center;
+    padding: 4em 1em;
+  }
+
+  .calories {
+    color: var(--ion-1p-calorie-color);
+  }
+
+  .carbs {
+    color: var(--ion-1p-carb-color);
+  }
+
+  .protein {
+    color: var(--ion-1p-protein-color);
+  }
+
+  .fats {
+    color: var(--ion-1p-fat-color);
+  }
+
+}

@@ -1,0 +1,160 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-title>My Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="profile">
+  <ion-list>
+    <ion-list-header>Personal info</ion-list-header>
+    <form [formGroup]="form" (ngSubmit)="updateProfile()">
+      <div class="global-input">
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input type="email" disabled="true" [value]="email"></ion-input>
+      </div>
+      <div class="global-input">
+        <ion-label position="stacked">First Name</ion-label>
+        <ion-input type="text" formControlName="first_name"></ion-input>
+      </div>
+      <div class="global-input">
+        <ion-label position="stacked">Last Name</ion-label>
+        <ion-input type="text" formControlName="last_name"></ion-input>
+      </div>
+      <div class="global-input">
+        <ion-label position="stacked">Height</ion-label>
+        <app-height [height]="form.get('height').value" (heightChange)="form.get('height').setValue($event)">
+      </app-height>
+      </div>
+      <div class="global-input padding">
+        <ion-label position="stacked">Weight</ion-label>
+        <ion-button type="button" color="primary" fill="outline" expand="full" (click)="goToWeighIn()">
+          + Add Weight
+        </ion-button>
+      </div>
+      <div class="global-input">
+        <ion-label position="stacked">Date of Birth</ion-label>
+        <ion-datetime display-format="MM/DD/YYYY" formControlName="date_of_birth"></ion-datetime>
+      </div>
+      <div class="global-input">
+        <ion-label position="stacked">Sex</ion-label>
+        <ion-select formControlName="sex" placeholder="Please Select">
+          <ion-select-option [value]="SexValues.Male">Male</ion-select-option>
+          <ion-select-option [value]="SexValues.Female">Female</ion-select-option>
+        </ion-select>
+      </div>
+      <div class="global-input padding">
+        <ion-label position="stacked">Goal Weight</ion-label>
+        <ion-input type="text" formControlName="goal_weight"></ion-input>
+        <small *ngIf="isMacroCalorieCounting">Your goal weight is influencing your daily Macros.</small>
+      </div>
+      <ion-list-header>Workouts</ion-list-header>
+      <div class="global-input">
+        <ion-label position="stacked">What level of exercise are you ready for?</ion-label>
+        <ion-select formControlName="training_level" placeholder="Please Select">
+          <ion-select-option *ngFor="let trainingLevel of trainingLevels" [value]="trainingLevel.value">{{
+            trainingLevel.name }}
+          </ion-select-option>
+        </ion-select>
+      </div>
+      <div class="global-input">
+        <ion-label position="stacked">Are you working out in a gym?</ion-label>
+        <ion-select formControlName="access_to_gym" placeholder="Please Select">
+          <ion-select-option value="1">Yes</ion-select-option>
+          <ion-select-option value="0">No</ion-select-option>
+        </ion-select>
+      </div>
+      <div class="global-input" *ngIf="form.get('access_to_gym').value == 0">
+        <ion-label position="stacked">What type of equipment do you have at home or have access to?</ion-label>
+        <ion-select formControlName="home_workout_selection" placeholder="Please Select">
+          <ion-select-option *ngFor="let homeWorkout of homeWorkouts" [value]="homeWorkout.value">{{
+            homeWorkout.name }}
+          </ion-select-option>
+        </ion-select>
+      </div>
+      <div class="global-input" *ngIf="form.get('access_to_gym').value == 1">
+        <ion-label position="stacked">Do you prefer traditional lifting plans or circuit style training or functional
+          fitness?</ion-label>
+        <ion-select formControlName="gym_workout_selection" placeholder="Please Select">
+          <ion-select-option *ngFor="let programType of programTypes" [value]="programType.value">{{ programType.name
+            }}</ion-select-option>
+        </ion-select>
+      </div>
+      <div class="premium-note" *ngIf="is_free_user && form.get('gym_workout_selection').value && form.get('gym_workout_selection').value != getProgramType(2).value && form.get('access_to_gym').value == 1">
+        <p>The <strong>{{ getProgramType(form.get('gym_workout_selection').value).name }}</strong> training program is only available to
+          Premium subscribers. You will default to the free option.
+        </p>
+        <ion-button class="premium" fill="solid" color="warning" size="small" shape="round" (click)="goPremium()">Go Premium &rarr;</ion-button>
+      </div>
+      <div class="premium-note" *ngIf="is_free_user && form.get('access_to_gym').value == 0">
+        <p>The <strong>at-home workout</strong> training programs are only available to
+          Premium subscribers. You will default to the Traditional gym workout.
+        </p>
+        <ion-button class="premium" fill="solid" color="warning" size="small" shape="round" (click)="goPremium()">Go Premium &rarr;</ion-button>
+      </div>
+      <ion-list-header>Nutrition</ion-list-header>
+      <div class="global-input">
+        <ion-label position="stacked">What are you more likely to do?</ion-label>
+        <ion-select [interfaceOptions]="{header: 'Choose an option'}" formControlName="likely_to_do" placeholder="Please Select">
+          <ion-select-option [value]="'Macro meal plan'">Meal plan</ion-select-option>
+          <ion-select-option>Calorie / Macro counting</ion-select-option>
+          <ion-select-option>Portion control</ion-select-option>
+        </ion-select>
+      </div>
+      <div class="premium-note" *ngIf="is_free_user && form.get('likely_to_do').value === 'Calorie / Macro counting'">
+        <p>The <strong>{{ form.get('likely_to_do').value }}</strong> option is only available to Premium subscribers.
+          You will default to the free option.
+        </p>
+        <ion-button class="premium" fill="solid" color="warning" size="small" shape="round" (click)="goPremium()">Go Premium &rarr;</ion-button>
+      </div>
+      <div class="global-input">
+        <app-macros-bar [transphormer]="transphormer"></app-macros-bar>
+        <ion-button margin-top *ngIf="isMacroCalorieCounting" (click)="openCustomMacro()" expand="full" >Customize Macros</ion-button>
+      </div>
+      <div class="premium-note" *ngIf="isMacroCalorieCounting && hasCustomMacros">
+        <p>Your macros are customized. Changing the values below will not affect your macros unless they are reset.</p>
+      </div>
+      <div class="global-input">
+        <ion-label position="stacked">I want to...</ion-label>
+        <ion-select formControlName="transphormation_goal" placeholder="Please Select">
+          <ion-select-option *ngFor="let transphormationGoal of transphormationGoals" [value]="transphormationGoal">{{
+            transphormationGoal }}
+          </ion-select-option>
+        </ion-select>
+        <small>This value impacts your daily macros.</small>
+      </div>
+      <div class="global-input">
+        <ion-label position="stacked">What is your daily activity level?</ion-label>
+        <ion-select formControlName="activity_level" placeholder="Please Select">
+          <ion-select-option *ngFor="let activeLevel of activeLevels" [value]="activeLevel">{{
+            activeLevel }}
+          </ion-select-option>
+        </ion-select>
+        <small>This value impacts your daily macros.</small>
+      </div>
+      <div class="global-input" *ngIf="form.get('likely_to_do').value === 'Macro meal plan'">
+        <ion-label position="stacked">How many meals per day are you wanting to eat?</ion-label>
+        <ion-select formControlName="meals_per_day" placeholder="Please Select">
+          <ion-select-option [value]="3">3</ion-select-option>
+          <ion-select-option [value]="4">4</ion-select-option>
+          <ion-select-option [value]="5">5</ion-select-option>
+        </ion-select>
+        <small>This value does not impact your macros, only portion sizes.</small>
+      </div>
+      <div class="global-input" *ngIf="isMacroCalorieCounting">
+        <ion-label position="stacked">Do you prefer Carbs or Fats?</ion-label>
+        <ion-select formControlName="preference_macro_counting" placeholder="Please Select" [interfaceOptions]="{header: 'Carbs or Fats?'}">
+          <ion-select-option value="Both">Both</ion-select-option>
+          <ion-select-option value="Carbs">Carbs</ion-select-option>
+          <ion-select-option value="Fats">Fat</ion-select-option>
+        </ion-select>
+        <small>This value adjusts daily carbs and fats.</small>
+      </div>
+      <div class="global-input padding">
+        <ion-button type="submit" color="primary" expand="full">Update</ion-button>
+      </div>
+    </form>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,45 @@
+@import '../live-stream/live-stream.page';
+
+.feed {
+  min-height: 200px;
+}
+
+.no-items {
+  margin-top: 24px;
+  text-align: center;
+  color: var(--ion-color-medium);
+}
+
+app-logo {
+  opacity: .2;
+}
+
+.live-stream {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.error, .loading {
+  height: 100vh;
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+//.ios .live-stream {
+//  height: calc(100vh - 81px);
+//}
+//
+//.md .live-stream {
+//  height: calc(100vh - 56px);
+//}
+
+#locked {
+  text-align: center;
+  padding: 8px;
+  background: var(--ion-color-dark-tint);
+  color: var(--ion-color-medium);
+}

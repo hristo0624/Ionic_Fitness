@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ wasAddedToday ? 'Edit' : 'Add' }} Weigh-in</ion-title>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-button slot="end" fill="clear" (click)="deleteRecord()">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div padding class="todays-weighin" *ngIf="wasAddedToday">
+    <ion-icon name="alert" size="large"></ion-icon>
+    <div>You are editing today's weigh-in. You can only weigh-in once every 24 hours.</div>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="storeWeight()">
+    <div class="global-input">
+      <ion-label position="stacked">New weight (lbs)</ion-label>
+      <ion-input type="number" formControlName="weight"></ion-input>
+    </div>
+    <div class="global-input">
+      <ion-label position="stacked">Last weigh-in (lbs)</ion-label>
+      <ion-input disabled="true" [value]="latestWeight ? latestWeight.weight : 'No weight logged yet!'"></ion-input>
+    </div>
+    <div class="global-input">
+      <ion-label position="stacked">Logged On</ion-label>
+      <ion-input disabled="true" [value]="latestWeightDate"></ion-input>
+    </div>
+    <div class="inline bottom-btn global-input">
+      <ion-button type="button" fill="clear" expand="full" (click)="deleteRecord()">Cancel</ion-button>
+
+      <ion-button type="submit" color="primary" expand="full" [disabled]="form.invalid">
+        {{wasAddedToday ? 'Update' : '' }} Weigh-in
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

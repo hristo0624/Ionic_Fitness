@@ -1,0 +1,33 @@
+.content {
+  white-space: pre-line;
+  margin-bottom: var(--default-margin);
+  font-size: 12pt;
+}
+
+section.announcement {
+  padding: calc(var(--default-margin) * 1.5);
+  border-bottom: 1px solid var(--ice-blue);
+  header {
+    margin-bottom: calc(var(--default-margin) * 2);
+    small {
+      color: var(--grey-mid);
+    }
+  }
+  h3 {
+    margin-bottom: calc(var(--default-margin) * 1.5);
+  }
+}
+
+.fade {
+  height: 5vh;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255,255,255,.0),
+      rgba(255,255,255,.8) 50%,
+      rgba(255,255,255, 1) 100%
+  );;
+}

@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="dashboard" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Group Messages</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item (click)="goToTransphormerGroupChat(group)" *ngFor="let group of groups">
+      <ion-avatar large slot="start">
+        <ion-icon name="contact" size="large"></ion-icon>
+      </ion-avatar>
+      <ion-label>
+        <h2>Advisor: {{ trainer(group).first_name }} {{ trainer(group).last_name }}</h2>
+        <h3>Transphormer Counts: {{ transphormerCount(group) }}</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

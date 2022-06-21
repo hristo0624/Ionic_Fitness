@@ -1,0 +1,137 @@
+ion-label {
+  white-space: normal;
+  margin: 0;
+  align-self: start;
+}
+
+ion-item {
+  --padding-start: 0;
+  --padding-end: 0;
+  --inner-padding-end: 0;
+}
+
+.no-videos {
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  color: #fff;
+
+  p {
+    font-size: 24px;
+  }
+}
+
+.title {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.video {
+  height: 400px;
+  width: 100%;
+}
+
+.video-container {
+  background-color: black;
+  height: calc(100vw * (9 / 16));
+  width: 100vw;
+
+  video {
+    height: calc(100vw * (9 / 16));
+    width: 100vw;
+  }
+}
+
+h5 {
+  font-family: var(--ion-1p-font-dominant);
+  white-space: normal;
+  text-transform: uppercase;
+}
+.content {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+
+
+
+  ion-thumbnail {
+    align-self: start;
+  }
+
+  .header {
+    text-transform: uppercase;
+    font-size: 12px;
+    background: #e3e3e3;
+    width: 100%;
+    padding: 10px 15px;
+  }
+
+  ion-item {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+.vod {
+  .thumbnail {
+    min-height: 200px;
+    position: relative;
+  }
+  h5 {
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+  .play-now {
+    font-family: var(--ion-1p-font-dominant);
+    white-space: normal;
+    font-size: 80%;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 19px;
+    left: 16px;
+    background: var(--ion-1p-blue-darker);
+    padding: 4px 6px;
+    vertical-align: middle;
+    color: white;
+    opacity: .75;
+  }
+  .bottom {
+    margin: 0px 16px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+  .details {
+    margin-top: 4px;
+    display: flex;
+    flex-direction: row;
+    color: var(--ion-color-medium);
+    > div {
+      margin-right: 4px;
+    }
+  }
+  margin-bottom: 24px;
+
+  .time {
+    display: flex;
+    align-items: center;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .no-videos,
+  .video {
+    height: 220px;
+
+    p {
+      font-size: 14px;
+    }
+  }
+}
+
+@import '../live-stream/video';

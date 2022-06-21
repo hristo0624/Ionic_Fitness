@@ -1,0 +1,77 @@
+<ion-list *ngIf="this.assessment !== undefined" [lines]="false">
+  <ion-item (click)="this.questionsOpened = !this.questionsOpened" class="heading">
+    <ion-icon name="chatboxes" slot="start" class="header-icon-style"></ion-icon>
+    <p class="header-title">Answers</p>
+    <ion-icon slot="end" [name]="this.questionsOpened ? 'arrow-round-up' : 'arrow-round-down'"
+              class="header-icon-style"></ion-icon>
+  </ion-item>
+
+  <section *ngIf="this.questionsOpened">
+    <assessment-answers-list [responseReports]="this.assessment.responses.report"></assessment-answers-list>
+  </section>
+
+  <ion-item (click)="this.weighInsOpened = !this.weighInsOpened" class="heading">
+    <ion-icon name="book" slot="start" class="header-icon-style"></ion-icon>
+    <p class="header-title">Weight</p>
+    <ion-icon slot="end" [name]="this.weighInsOpened ? 'arrow-round-up' : 'arrow-round-down'"
+              class="header-icon-style"></ion-icon>
+  </ion-item>
+
+  <ion-grid
+    *ngIf="this.weighInsOpened && this.assessment.body_metrics !== null && this.assessment.body_metrics.length > 0">
+    <ion-row class="header">
+      <ion-col size="6">Week</ion-col>
+      <ion-col>(lbs)</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let weight of sortedWeights; let i = index; let last = last">
+      <ion-col size="6">{{ getFromNowFormattedDate(weight.logged_on) }}</ion-col>
+      <ion-col>{{ weight.weight }} lbs <span class="diff" *ngIf="!last">(
+          <ion-icon name="arrow-up" class="gain" *ngIf="diffInWeight(i) > 0"></ion-icon>
+          <ion-icon name="arrow-down" class="loss" *ngIf="diffInWeight(i) < 0"></ion-icon>
+        {{ diffInWeight(i) }}
+        {{ Math.abs(diffInWeight(i)) > 1 ? 'lbs' : 'lb'}})</span></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-item (click)="this.nutritionOpened = !this.nutritionOpened" class="heading">
+    <ion-icon name="cafe" slot="start" class="header-icon-style"></ion-icon>
+    <p class="header-title">Nutrition</p>
+    <ion-icon slot="end" [name]="this.nutritionOpened ? 'arrow-round-up' : 'arrow-round-down'"
+              class="header-icon-style"></ion-icon>
+  </ion-item>
+
+  <section *ngIf="this.nutritionOpened">
+    <app-nutrition-detail [transphormerId]="this.transphormerId" *ngIf="transphormerDoingMacroCalorieCounting"
+                          [nutritionInfo]="this.assessment.nutrition"></app-nutrition-detail>
+    <ion-item *ngIf="!transphormerDoingMacroCalorieCounting" [lines]="false">
+      <ion-icon name="information-circle-outline" color="tertiary" slot="start"></ion-icon>
+      <ion-text padding-vertical>Transphormer is not doing Calorie / Macro counting. No data available.</ion-text>
+    </ion-item>
+  </section>
+
+  <ion-item (click)="this.workoutsOpened = !this.workoutsOpened" class="heading">
+    <ion-icon name="fitness" slot="start" class="header-icon-style"></ion-icon>
+    <p class="header-title">Workouts</p>
+    <ion-icon slot="end" [name]="this.workoutsOpened ? 'arrow-round-up' : 'arrow-round-down'"
+              class="header-icon-style"></ion-icon>
+  </ion-item>
+
+  <section *ngIf="this.workoutsOpened">
+    <div *ngFor="let workoutSession of this.assessment.workouts">
+      <app-workout [sessionWorkout]="workoutSession"></app-workout>
+    </div>
+  </section>
+
+  <ion-item (click)="this.photosOpened = !this.photosOpened" class="heading">
+    <ion-icon name="images" slot="start" class="header-icon-style"></ion-icon>
+    <p class="header-title">Photos</p>
+    <ion-icon slot="end" [name]="this.photosOpened ? 'arrow-round-up' : 'arrow-round-down'"
+              class="header-icon-style"></ion-icon>
+  </ion-item>
+
+  <section *ngIf="this.photosOpened">
+    <app-progress-comparison [before]="this.assessment.photos.oldest" [after]="this.assessment.photos.latest">
+    </app-progress-comparison>
+  </section>
+
+</ion-list>

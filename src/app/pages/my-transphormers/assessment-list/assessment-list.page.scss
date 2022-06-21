@@ -1,0 +1,12 @@
+ion-label {
+  margin: calc(var(--default-margin) * .5);
+  display: flex;
+  align-items: center;
+  ion-badge {
+    margin-left: calc(var(--default-margin) * .5);
+  }
+}
+
+ion-list {
+  border-top: 1px solid var(--ice-blue);
+}

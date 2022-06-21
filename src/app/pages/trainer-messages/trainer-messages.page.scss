@@ -1,0 +1,23 @@
+ion-item {
+  &.unread {
+    ion-icon {
+      color: var(--ion-color-primary);
+    }
+  }
+  &.read {
+    ion-icon {
+      color: var(--ion-color-dark);
+    }
+  }
+}
+
+.tb-logo {
+  background-image: url('../../../assets/icon/firstPhormLogo.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 0 auto;
+  font-size: 32px;
+  width: 2em;
+  height: 2em;
+}

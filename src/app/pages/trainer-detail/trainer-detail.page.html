@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/messages" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Advisor Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="trainer">
+  <ion-list>
+    <ion-list-header>
+      General
+    </ion-list-header>
+    <ion-item>
+      <ion-label>
+        Name
+      </ion-label>
+      {{ trainer.transphormer.display_name }}
+    </ion-item>
+    <ion-item *ngIf="trainer.city !== '' && trainer.state !== ''">
+      <ion-label>
+        Location
+      </ion-label>
+      {{ trainer.city }}, {{ trainer.state }}
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Years Training
+      </ion-label>
+      {{ trainer.years_training }}
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Certifications
+      </ion-label>
+      {{ trainer.certifications }}
+    </ion-item>
+    <ion-list-header>
+      Social Media
+    </ion-list-header>
+    <ion-item *ngIf="trainer.facebook_group" (click)="visitUrl(trainer.facebook_group)">
+      <ion-icon margin-right name="logo-facebook" item-start></ion-icon>
+      Facebook Group
+    </ion-item>
+    <ion-item *ngIf="trainer.facebook" (click)="visitFacebook(trainer.facebook)">
+      <ion-icon margin-right name="logo-facebook" item-start></ion-icon>
+      {{ trainer.facebook }}
+    </ion-item>
+    <ion-item *ngIf="trainer.instagram" (click)="visitInstagram(trainer.instagram)">
+      <ion-icon margin-right name="logo-instagram" item-start></ion-icon>
+      {{ trainer.instagram }}
+    </ion-item>
+    <ion-item *ngIf="trainer.linkedin" (click)="visitLinkedIn(trainer.linkedin)">
+      <ion-icon margin-right name="logo-linkedin" item-start></ion-icon>
+      {{ trainer.linkedin }}
+    </ion-item>
+    <ion-item *ngIf="trainer.pintrest" (click)="visitPinterest(trainer.pintrest)">
+      <ion-icon margin-right name="logo-pinterest" item-start></ion-icon>
+      {{ trainer.pintrest }}
+    </ion-item>
+    <ion-item *ngIf="trainer.twitter" (click)="visitTwitter(trainer.twitter)">
+      <ion-icon margin-right name="logo-twitter" item-start></ion-icon>
+      {{ trainer.twitter }}
+    </ion-item>
+    <ion-item *ngIf="trainer.youtube" (click)="visitYoutube(trainer.youtube)">
+      <ion-icon margin-right name="logo-youtube" item-start></ion-icon>
+      {{ trainer.youtube }}
+    </ion-item>
+  </ion-list>
+</ion-content>

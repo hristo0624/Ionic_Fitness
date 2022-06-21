@@ -1,0 +1,65 @@
+<ion-grid>
+  <ion-row class="comparison-header-row">
+    <ion-col size="6">
+      <h4>Oldest</h4>
+    </ion-col>
+    <ion-col size="6">
+      <h4>Newest</h4>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="6">
+      <div *ngIf="before.picture_front" class="thumbnail" (click)="openZoomImg(before.picture_front)">
+        <img [src]="before.picture_front"/>
+      </div>
+    </ion-col>
+    <ion-col size="6">
+      <div *ngIf="after.picture_front" class="thumbnail" (click)="openZoomImg(after.picture_front)">
+        <img [src]="after.picture_front"/>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <span class="progress-picture-description">Front</span>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="6">
+      <div *ngIf="before.picture_side" class="thumbnail" (click)="openZoomImg(before.picture_side)">
+        <img [src]="before.picture_side"/>
+      </div>
+    </ion-col>
+    <ion-col size="6">
+      <div *ngIf="after.picture_side" class="thumbnail" (click)="openZoomImg(after.picture_side)">
+        <img [src]="after.picture_side"/>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <span class="progress-picture-description">Side</span>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="6">
+      <div *ngIf="before.picture_back" class="thumbnail" (click)="openZoomImg(before.picture_back)">
+        <ion-img [src]="before.picture_back"></ion-img>
+      </div>
+    </ion-col>
+    <ion-col size="6">
+      <div *ngIf="after.picture_back" class="thumbnail" (click)="openZoomImg(after.picture_back)">
+        <img [src]="after.picture_back"/>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <span class="progress-picture-description">Back</span>
+    </ion-col>
+  </ion-row>
+
+</ion-grid>

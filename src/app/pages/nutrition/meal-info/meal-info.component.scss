@@ -1,0 +1,27 @@
+.text {
+  font-size: 14px;
+}
+
+h3 {
+  font-family: var(--ion-1p-font-dominant);
+  padding-left: .5em;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--ion-1p-teal);
+  padding-bottom: .1em;
+}
+
+p {
+  text-align: justify;
+  line-height: 1.15em;
+  padding: 1em;
+}
+
+p:nth-child(even) {
+  background: var(--ion-1p-light);
+}
+
+iframe {
+  width: 100%;
+  margin-bottom: 2em;
+}

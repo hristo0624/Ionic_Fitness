@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="closeModal()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ exercise.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="sets" padding>
+    <ion-grid class="form">
+      <ion-row class="header" justify-content-end>
+        <ion-col size="2">Set</ion-col>
+        <ion-col size="3" *ngIf="exercise.record_type === 2">
+          <span class="form-header">Reps</span>
+        </ion-col>
+        <ion-col size="3">
+          <span class="form-header">Weight</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="form">
+      <ion-row *ngFor="let reps of workoutData; let i = index;" justify-content-end>
+        <ion-col size="2">
+          <p class="serial">{{ i + 1 }}</p>
+        </ion-col>
+        <ion-col size="3" *ngIf="exercise.record_type === 2">
+          <input type="number" tabindex="{{i*5}}" [value]="reps.reps" (input)="reps.reps=$event.target.value">
+        </ion-col>
+        <ion-col size="3">
+          <input type="number" tabindex="{{(i*5) + 1}}" [value]="reps.weight" (input)="reps.weight=$event.target.value">
+        </ion-col>
+      </ion-row>
+      <ion-row margin-top justify-content-center>
+        <ion-col col-12 margin-top justify-content-center text-center>
+          <ion-button (click)="updateAndClose()" fill="outline" expand="full">Save Exercise Info</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <p class="description" padding>Use this page to track the weight, reps, or time you use for each exercise.</p>
+  <div class="horizontal-line"></div>
+  <app-workout-history [exerciseGroupId]="exercise.id" [exerciseId]="exercise.exercise_id"></app-workout-history>
+</ion-content>

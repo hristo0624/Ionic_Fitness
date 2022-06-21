@@ -1,0 +1,21 @@
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 24px 0;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.options {
+  font-weight: normal;
+  padding: 10px;
+}
+
+.inline {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

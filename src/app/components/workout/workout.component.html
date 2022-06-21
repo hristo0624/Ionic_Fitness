@@ -1,0 +1,68 @@
+<div class="workoutWrapper" [ngClass]="{restDay: sessionWorkout.workout.is_rest_day, incomplete: !sessionWorkout.completed}">
+  <div *ngIf="!restDay && !emptyWorkout">
+    <div class="exgroupWrapper" *ngFor="let exgroup of exerciseGroups">
+      <div class="header">
+        <h5>{{ sessionDate }} {{ sessionDay }} /</h5>
+        <h5 style="color:darkgrey; margin-left: 5px;">  {{ exgroup.name | uppercase }}</h5>
+      </div>
+      <div class="exerciseItem" *ngFor="let exItem of exgroup.exercises">
+        <div class="normalDesc">
+          <div class="bluePoint"></div>
+          <div class="desc">
+            <div class="itemLeft">
+              {{ exItem.exname }}
+            </div>
+            <div *ngIf="exItem.exnote" class="itemRight">
+              {{ exItem.exnote }}
+            </div>
+          </div>
+        </div>
+        <div *ngIf="exItem.results">
+          <div class="longDesc">
+            {{ exItem.results }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="noteExist && restDay == 0 && !emptyWorkout" class="notes">
+      <h5 padding-bottom>Notes</h5>
+      <span class="noteText">{{ note }}</span>
+    </div>
+  </div>
+  <div *ngIf="restDay" class="exgroupWrapper">
+    <div class="header">
+      <h5>{{ sessionDate }} {{ sessionDay }}</h5>
+      <h5 style="color:darkgrey; margin-left: 5px;"></h5>
+    </div>
+    <div class="exgroupWrapper">
+      <div class="exerciseItem">
+        <div class="normalDesc">
+          <div class="bluePoint"></div>
+          <div class="desc">
+            <div class="itemLeft">
+              Rest
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="emptyWorkout && !sessionWorkout.workout.is_rest_day" class="exgroupWrapper">
+    <div class="header">
+      <h5>{{ sessionDate }} {{ sessionDay }}</h5>
+      <h5 style="color:darkgrey; margin-left: 5px;"></h5>
+    </div>
+    <div class="exgroupWrapper">
+      <div class="exerciseItem">
+        <div class="normalDesc">
+          <div class="bluePoint"></div>
+          <div class="desc">
+            <div class="itemLeft">
+              No Data
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

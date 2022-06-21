@@ -1,0 +1,40 @@
+<div class="container">
+  <h4 class="title">Step 1: Personal information</h4>
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+    <div class="global-input">
+      <ion-label>Date of Birth</ion-label>
+      <ion-datetime display-format="MM/DD/YYYY" formControlName="date_of_birth"></ion-datetime>
+    </div>
+    <div class="global-input">
+      <ion-label>Height</ion-label>
+    <app-height
+        [height]="form.get('height').value"
+        (heightChange)="form.get('height').setValue($event)">
+      </app-height>
+    </div>
+    <div class="global-input">
+      <ion-label>Weight <span class="color">(lbs)</span></ion-label>
+      <ion-input formControlName="weight" type="number"></ion-input>
+    </div>
+    <div class="global-input">
+      <ion-label>Goal Weight <span class="color">(lbs)</span></ion-label>
+      <ion-input formControlName="goal_weight" type="number"></ion-input>
+    </div>
+    <div class="global-input radio">
+      <ion-label>Sex</ion-label>
+      <ion-radio-group formControlName="sex">
+        <div class="inline">
+          <div class="inline">
+            <ion-label class="options">Male</ion-label>
+            <ion-radio mode="md" value="1"></ion-radio>
+          </div>
+          <div class="inline">
+            <ion-label class="options">Female</ion-label>
+            <ion-radio mode="md" value="2"></ion-radio>
+          </div>
+        </div>
+      </ion-radio-group>
+    </div>
+    <ion-button type="submit" [disabled]="form.invalid">Next</ion-button>
+  </form>
+</div>

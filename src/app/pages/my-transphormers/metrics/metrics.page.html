@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Body Metrics</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/dashboard" text=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div class="heading" text-center margin-bottom *ngIf="weights.length > 1">
+    {{ weights[weights.length - 1].weight }} lbs
+    <ion-icon name="arrow-round-forward"></ion-icon>
+    {{ weights[0].weight }}lbs
+  </div>
+
+  <div class="heading" *ngIf="weights.length === 1">
+    {{ weights[0].weight }} lbs
+    <ion-icon name="arrow-round-forward"></ion-icon>
+    {{ weights[0].weight }}lbs
+  </div>
+
+  <div class="heading" margin-bottom *ngIf="weights.length === 0">
+    No weigh-ins to see. Log one!
+  </div>
+
+  <app-chart margin-vertical [weights]="weights"></app-chart>
+  <ion-list margin-top>
+    <ion-item *ngFor="let weight of weights; let i = index; let last = last">
+      <ion-label>{{ weight.weight }} lbs <span class="diff" *ngIf="!last">({{ diffInWeight(i) }} {{ Math.abs(diffInWeight(i)) > 1 ? 'lbs' : 'lb'}})</span></ion-label>
+      <span class="time">{{ weight.logged_on.fromNow() }}</span>
+    </ion-item>
+  </ion-list>
+</ion-content>

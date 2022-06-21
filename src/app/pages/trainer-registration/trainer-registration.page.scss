@@ -1,0 +1,20 @@
+.profile {
+  form {
+    padding-bottom: 20px;
+  }
+}
+
+ion-list-header {
+  --background: var(--ion-color-header);
+}
+
+ion-radio-group {
+  ion-item {
+    --inner-border-width: 0;
+    font-size: var(--app-caption-size)
+  }
+}
+
+//.global-input ion-label {
+//  ;
+//}

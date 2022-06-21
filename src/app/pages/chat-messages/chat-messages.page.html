@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/trainer-messages"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Messages w/ {{ name }}</ion-title>
+      <ion-buttons slot="end">
+          <ion-button (click)="viewTransphormer()"><ion-icon slot="icon-only"
+                                                         color="primary"
+                                                         name="search"
+                                                         size="large"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<div id="messaging-page">
+  <ion-content #messageContent class="message-listing">
+    <ion-item-sliding class="chat-wrapper" *ngFor="let message of messages" [class.chat-wrapper-receiver]="message.from_id === user.id">
+      <ion-item [lines]="'none'" >
+<div class="msg-block" [class.chat-receiver]="message.from_id !== user.id" [class.chat-sender]="message.from_id === user.id">
+          <p class="text" [innerHTML]="message.message"></p>
+          <div class="time">{{ message.from_id === user.id ? 'Sent' : 'Received' }} {{ time(message.created_at) }}</div>
+        </div>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-content>
+
+  <div class="messaging">
+    <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+      <div id="message-entry">
+        <ion-textarea autocapitalize="on" appAutoresize (resize)="scrollBottom()" formControlName="message" placeholder="Message"></ion-textarea>
+        <ion-button type="submit" fill="clear" [disabled]="messageForm.invalid">
+          <ion-icon name="send" slot="icon-only"></ion-icon>
+        </ion-button>
+      </div>
+    </form>
+  </div>
+</div>

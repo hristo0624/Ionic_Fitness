@@ -1,0 +1,45 @@
+<!--Heading-->
+<div class="row heading">
+  <div class="col"></div>
+  <div class="col"># Of Reps</div>
+  <div class="col">Weight</div>
+</div>
+<!--end Heading-->
+<!--Skeleton text for loading-->
+<ng-container *ngIf="!loaded">
+  <div class="row content">
+    <div class="col"><ion-skeleton-text animated></ion-skeleton-text></div>
+    <div class="col"><ion-skeleton-text animated></ion-skeleton-text></div>
+    <div class="col"><ion-skeleton-text animated></ion-skeleton-text></div>
+  </div>
+  <div class="row content">
+    <div class="col"><ion-skeleton-text animated></ion-skeleton-text></div>
+    <div class="col"><ion-skeleton-text animated></ion-skeleton-text></div>
+    <div class="col"><ion-skeleton-text animated></ion-skeleton-text></div>
+  </div>
+  <div class="row content">
+    <div class="col"><ion-skeleton-text animated></ion-skeleton-text></div>
+    <div class="col"><ion-skeleton-text animated></ion-skeleton-text></div>
+    <div class="col"><ion-skeleton-text animated></ion-skeleton-text></div>
+  </div>
+</ng-container>
+<!--end Skeleton text-->
+<!--Main content-->
+<ng-container *ngIf="loaded">
+  <ng-container *ngFor="let log of historyLogs">
+    <div class="row content" *ngFor="let history of log.workout_session_exercises; let i = index;">
+      <div class="col">{{ i === 0 ? log.workout_date.format('MMMM D') : '' }}</div>
+      <div class="col">{{ history.reps }}</div>
+      <div class="col">{{ history.weight }} lbs</div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="historyLogs.length === 0">
+    <div class="row content">
+      <div class="col no-history">
+        No logs added
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
+<!--end Main content-->
+

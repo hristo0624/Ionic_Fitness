@@ -1,0 +1,23 @@
+ion-list-header {
+  --background: var(--ion-color-header);
+
+  &.table-headers {
+    font-size: 12px;
+    text-transform: revert;
+  }
+}
+
+ion-item {
+  padding: 2px 0;
+}
+
+.small {
+  font-size: 12px;
+}
+
+.food-row-header {
+  ion-col {
+    font-size: 10px;
+    font-weight: 500;
+  }
+}

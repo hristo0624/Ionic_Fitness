@@ -1,0 +1,40 @@
+ion-list-header {
+  --background: var(--ion-color-header);
+}
+
+ion-item {
+  padding: 2px 0;
+}
+
+.small {
+  font-size: 12px;
+}
+
+ion-card {
+  --color: var(--ion-color-brand-black);
+  border-color: #ccc;
+}
+
+.title {
+  text-transform: uppercase;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.accordian-button {
+  //position: relative;
+  //bottom: 10px;
+}
+
+.no-height {
+  max-height: 0;
+  transition: ease all 0.3s;
+}
+
+.full-height {
+  max-height: 1000px;
+}

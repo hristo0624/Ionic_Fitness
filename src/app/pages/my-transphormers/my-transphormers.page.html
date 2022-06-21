@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-title>My Transphormers</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div padding-start padding-end padding-top>
+  <ion-button (click)="goToFilters()" expand="full" fill="outline">
+    <div>Edit filters</div>
+    <br>
+  </ion-button>
+  <div class="ion-text-center">
+    <small>{{ totalFilteredTransphormers }}/{{ totalTransphormers }} Transphormers</small>
+  </div>
+</div>
+
+<ion-content>
+  <ion-searchbar placeholder="Search..." debounce="300" (ionChange)="setupTransphormersListing(false, true)"
+                 [(ngModel)]="filterValues.name"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let transphormer of transphormers" (click)="goToDetails(transphormer)">
+      <ion-label>
+        <ion-text>{{ transphormer.display_name }}</ion-text>
+        <p>{{ transphormer.age }} {{ transphormer.sex == SexValue.Male ? 'M' : 'F' }}
+          &bull; Currently {{ transphormer.latest_weight_value || '?' }} lbs
+          &bull; <ion-icon [name]="transphormer.latest_weight_diff === 0 ? 'arrow-round-forward' : (transphormer.latest_weight_diff > 0 ? 'arrow-round-up' : 'arrow-round-down')"></ion-icon> {{ math.abs(transphormer.latest_weight_diff) }} lbs</p>
+      </ion-label>
+      <ion-icon *ngIf="transphormer.is_paid_user" name="star-outline" size="small" slot="end"></ion-icon>
+      <ion-icon *ngIf="transphormer.is_my_cfl" name="link" size="small" slot="end"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="listingEnd($event)">
+    <ion-infinite-scroll-content
+            loadingSpinner="dots"
+            loadingText="Fetching more Transphormers...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <ion-fab vertical="bottom" slot="fixed" horizontal="end">
+    <ion-fab-button (click)="goToCreateAnnouncement()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

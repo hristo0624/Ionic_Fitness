@@ -1,0 +1,55 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <app-menu-button></app-menu-button>
+        </ion-buttons>
+        <ion-title>Help & Support</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-list-header>Common Questions</ion-list-header>
+        <ion-item lines="none">
+            Need help managing your subscription? Have questions about functionality or app features?<br/>
+            Your question has probably already been answered! Check the Help Guide for more information.
+        </ion-item>
+        <div padding>
+        <ion-button type="button" color="primary" size="large" fill="outline" expand="full" (click)="viewSupportPage()">
+            View Help Guide
+        </ion-button>
+        </div>
+        <ion-item lines="none" text-center><p class="small-warn">Please note that we cannot cancel or manage Premium Subscriptions. Please refer to the help guide for more information.</p></ion-item>
+        <ion-list-header>Contact Support</ion-list-header>
+        <ion-item lines="none">
+            If you are still having problems after reviewing the above, or if you have other feedback, please use the link below to email us.
+        </ion-item>
+        <div class="global-input global-margin-top-25">
+            <ion-button type="button" color="tertiary" fill="outline" expand="full" [href]="emailHref">Email support</ion-button>
+        </div>
+        <ion-list-header>App Information</ion-list-header>
+        <ion-item>
+            <ion-label>App version</ion-label>
+            <ion-note slot="end">{{ appVersion || 'n/a' }}</ion-note>
+        </ion-item>
+        <ion-item>
+            <ion-label>Build version</ion-label>
+            <ion-note slot="end">{{ buildVersion || 'n/a' }}</ion-note>
+        </ion-item>
+        <ion-item>
+            <ion-label>Deploy version</ion-label>
+            <ion-note slot="end">{{ ionicVersion || 'n/a' }}</ion-note>
+        </ion-item>
+        <ion-list-header>Advanced</ion-list-header>
+        <ion-item text-center>
+            <ion-button expand="fill" color="secondary" (click)="checkPremiumSubscription()">Refresh
+                Premium Status
+            </ion-button>
+        </ion-item>
+        <ion-item text-center>
+            <ion-button expand="fill" color="secondary" (click)="clearCaches()">
+                Clear Caches
+            </ion-button>
+        </ion-item>
+    </ion-list>
+</ion-content>

@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button [defaultHref]="backHref"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Nutrition Details</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<div class="content">
+    <div class="header">
+        <div>Date</div>
+        <div>Cals</div>
+        <div>Protein</div>
+        <div>Carbs</div>
+        <div>Fats</div>
+    </div>
+    <div class="listing" *ngIf="dayData.length > 0">
+        <div (click)="expandDate(macro)" [ngClass]="{even: i%2 === 0, odd: i%2 === 1, expanded: this.expansions[macro.track_date]}" class="day" *ngFor="let macro of sortedFood; let i = index;">
+            <div class="data" *ngIf="macro.calories !== 0">
+                <div class="date">{{ macro.short_date }}</div>
+                <div class="calories">{{ macro.calories }}</div>
+                <div class="protein">{{ macro.protein }}</div>
+                <div class="carbs">{{ macro.carbs }}</div>
+                <div class="fats">{{ macro.fats}}</div>
+            </div>
+            <div class="data empty" *ngIf="macro.calories === 0">
+                <div class="date">{{ macro.short_date }}</div>
+                <div class="message" text-center>No data.</div>
+            </div>
+            <div *ngIf="this.expansions[macro.track_date]" class="meals">
+                <div *ngFor="let meal of macro.meals; let j = index;">
+                    <div class="meal">
+                        <div class="data" [ngClass]="{even: j%2 === 0, odd: j%2 === 1}">
+                            <div class="meal-number">M #{{ meal.meal }}</div>
+                            <div class="calories">{{ meal.calories }}</div>
+                            <div class="protein">{{ meal.protein }}</div>
+                            <div class="carbs">{{ meal.carbs }}</div>
+                            <div class="fats">{{ meal.fats}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div text-center="">
+            <small>Tap on any line to get daily breakdowns.</small>
+        </div>
+    </div>
+    <div *ngIf="dayData.length === 0" class="centered">
+        No nutrition data available for the last 2 weeks.
+    </div>
+</div>

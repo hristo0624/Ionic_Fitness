@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/live-streaming"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ video?.title || '...' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div class="live-stream">
+  <div *ngIf="liveStreamError" class="error">
+    <div>
+      <h4>Error</h4>
+    </div>
+    <div>
+      <p>{{ liveStreamError }}</p>
+    </div>
+    <ion-button (click)="setupLiveStreamVideo()">Retry
+      <ion-icon name="refresh" slot="start"></ion-icon>
+    </ion-button>
+  </div>
+  <div [style.display]="!liveStreamError && !settingUpLiveStream ? 'flex': 'none'" class="live-stream">
+    <app-video-player [video]="video"></app-video-player>
+
+    <ion-content>
+      <ion-refresher slot="fixed" (ionRefresh)="reloadFeed($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Swipe down to refresh!"
+          refreshingSpinner="dots" refreshingText="Refreshing...">
+        </ion-refresher-content>
+      </ion-refresher>
+
+      <div *ngIf="!liveStreamError" class="feed">
+        <div *ngIf="feedItems.length === 0" class="no-items">
+          <div>No feed is available for this video.</div>
+          <app-logo></app-logo>
+        </div>
+        <div class="feed-item" [ngClass]="{sticky: feedItem.sticky, special: feedItem.special }"
+          *ngFor="let feedItem of sortedItems; let i = $index;">
+          <div class="top">
+            <div class="author">
+              <ion-icon name="star" *ngIf="!feedItem.transphormer_id"></ion-icon>
+              <div>{{feedItem.author}}</div>
+            </div>
+            <div class="timestamp" *ngIf="!feedItem.sticky">{{ localTimestamp(feedItem.updated_at) }}</div>
+          </div>
+          <div class="text">{{feedItem.text}}</div>
+        </div>
+      </div>
+
+    </ion-content>
+
+    <div id="locked" *ngIf="feedItems.length !== 0">
+      <ion-icon name="lock"></ion-icon> Viewing archived feed.
+    </div>
+  </div>
+</div>

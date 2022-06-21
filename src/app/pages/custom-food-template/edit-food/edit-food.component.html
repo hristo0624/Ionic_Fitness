@@ -1,0 +1,15 @@
+<header class="header">
+  <h5 class="title">
+    Edit Food
+    <ion-button float-right size="small" fill="clear" class="close" (click)="closeModal()">
+      <ion-icon name="close" mode="md"></ion-icon>
+    </ion-button>
+  </h5>
+  <app-custom-food [isCustom]="true"
+                   [showMealSelect]="false"
+                   [isConsumable]="false"
+                   (cancel)="closeModal()"
+                   [foodItem]="_foodItem"
+                   (foodItemCreated)="updateCustomFood($event)"
+  ></app-custom-food>
+</header>

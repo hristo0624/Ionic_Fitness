@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Onboarding</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <app-personal-info [class.hide]="step !== 1" (complete)="setupPersonalInfo($event)"></app-personal-info>
+  <app-basic-info [class.hide]="step !== 2" (previous)="moveToStep1()"
+                  (complete)="setupBaseInfo($event)"></app-basic-info>
+  <app-marketing-questions [class.hide]="step !== 3" (previous)="moveToStep2()"
+                           (complete)="onBoard($event)"></app-marketing-questions>
+</ion-content>

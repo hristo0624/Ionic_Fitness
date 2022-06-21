@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-title>My Foods</ion-title>
+    <ion-buttons slot="end">
+      <button class="logo-button" ion-button right>
+        <div class="tb-logo"></div>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-button color="primary" expand="full" fill="outline" (click)="openAddCustomFoodModal()"><ion-icon slot="start" name="add"></ion-icon> Add New Food</ion-button>
+  <ion-list>
+    <ion-item *ngFor="let listItem of list">
+      <ng-container [ngSwitch]="listItem.type">
+        <ng-container *ngSwitchCase="'custom-food'">
+          <ion-label>{{ listItem.item.name }}</ion-label>
+          <ion-button fill="clear" (click)="openEditFoodModal(listItem.item)">
+            <ion-icon name="create" mode="md" float-right></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" color="danger" (click)="removeTemplate(listItem.type, listItem.item)">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+        </ng-container>
+      </ng-container>
+      <ng-container [ngSwitch]="listItem.type">
+        <ng-container *ngSwitchCase="'meal'">
+          <ion-label>
+            <ion-icon name="restaurant"></ion-icon>
+            {{ listItem.item.name }}
+          </ion-label>
+          <ion-button fill="clear" (click)="openEditMealModal(listItem.item)">
+            <ion-icon name="create" mode="md" float-right></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" color="danger" (click)="removeTemplate(listItem.type, listItem.item)">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+        </ng-container>
+      </ng-container>
+    </ion-item>
+  </ion-list>
+</ion-content>

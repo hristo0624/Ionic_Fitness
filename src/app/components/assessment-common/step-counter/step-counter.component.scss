@@ -1,0 +1,43 @@
+:host {
+  --inactive-background-color: rgba(0,0,0, 0.15);
+  --active-background-color: #49A5FF;
+  --counter-height: 5px;
+}
+
+.steps-container {
+  display: flex;
+  flex-flow: row;
+
+  .steps {
+    display: flex;
+    width: 80%;
+    flex-flow: row;
+    justify-content: space-evenly;
+    padding: 10px 25px 10px 5px;
+
+    &.mini-mode {
+      width: 100%;
+    }
+
+    .step {
+      background: var(--inactive-background-color);
+      height: var(--counter-height);
+      width: 100%;
+      margin: 0 5px;
+
+      &.active {
+        background: var(--active-background-color);
+      }
+    }
+  }
+
+  .step-info {
+    width: 20%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+  }
+
+}
+

@@ -1,0 +1,24 @@
+<div class="flexible-container">
+  <div class="header-image">
+    <img *ngIf="user.sex === '1'" src="/assets/photos/male/advisor-1.jpg"/>
+    <img *ngIf="user.sex !== '1'" src="/assets/photos/female/advisor-1.jpg"/>
+  </div>
+  <div class="flexible-container" padding>
+    <h4>Don't Have an Advisor?</h4>
+    <p>You can request an Advisor and when they accept, you'll get a notification that they have accepted your
+      request.</p>
+    <p>To begin, just type in Advisor's email or affiliate ID and tap "Send Request".</p>
+
+    <div>
+      <ion-label class="label-stacked newstyle">Email or Affiliate ID:</ion-label>
+      <ion-input class="newstyle" [spellcheck]="false" inputmode="text" [(ngModel)]="matchValue"></ion-input>
+    </div>
+
+    <form [formGroup]="formGroup" (ngSubmit)="submit()">
+      <div class="button global-margin-top-25">
+        <ion-button type="submit" color="primary" expand="full">Send Request</ion-button>
+      </div>
+    </form>
+  </div>
+</div>
+

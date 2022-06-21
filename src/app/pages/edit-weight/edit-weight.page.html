@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit Weigh-In</ion-title>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-button slot="end" fill="clear" (click)="close()">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="weight">
+  <form [formGroup]="form" (ngSubmit)="updateWeight()">
+    <div class="global-input">
+      <ion-label position="stacked">Current weigh-in (lbs)</ion-label>
+      <ion-input formControlName="weight"
+                 [value]="weight.weight"></ion-input>
+    </div>
+    <div class="global-input">
+      <ion-label position="stacked">Logged On</ion-label>
+      <ion-input disabled="true" [value]="weight.logged_on.local().format('YYYY-MM-DD h:mm a')"></ion-input>
+    </div>
+    <div class="inline bottom-btn global-input">
+      <ion-button type="button" color="danger" expand="full" (click)="isConfirmingDelete = !isConfirmingDelete">{{ isConfirmingDelete ? 'Don\'t Delete' : 'Delete' }}</ion-button>
+      <ion-button fill="clear" expand="full" *ngIf="!isConfirmingDelete" strong (click)="close()">Cancel</ion-button>
+      <ion-button type="submit" *ngIf="!isConfirmingDelete" color="primary" expand="full" [disabled]="!form.dirty || form.invalid">
+        Update
+      </ion-button>
+      <ion-button *ngIf="isConfirmingDelete" (click)="deleteWeight()" color="primary" expand="full">
+        Delete
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

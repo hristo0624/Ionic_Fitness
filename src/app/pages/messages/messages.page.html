@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end" *ngIf="hasTrainer && canMessage">
+      <ion-button (click)="trainerActionSheet()" color="primary" fill="clear">
+        <ion-icon name="cog"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Advisor Messages</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="checkComplete && !hasTrainer" padding>
+  <p>You don't currently have a Advisor.</p>
+  <p>Once you get an Advisor, your messages will show up here.</p>
+
+  <div class="button global-margin-top-25">
+    <ion-button color="primary" expand="full" routerDirection="root" routerLink="/trainer-requests">Request an Advisor</ion-button>
+  </div>
+</ion-content>
+
+<div id="messaging-page" *ngIf="checkComplete && hasTrainer">
+  <ion-content class="message-listing" *ngIf="canMessage" #messageContent>
+    <div class="chat-wrapper" *ngFor="let message of messages" [class.chat-wrapper-receiver]="message.from_id === user.id">
+      <div class="msg-block" [class.chat-receiver]="message.from_id !== user.id" [class.chat-sender]="message.from_id === user.id">
+        <p class="text" [innerHTML]="message.message"></p>
+        <div class="time">{{ time(message.created_at) }}</div>
+      </div>
+    </div>
+  </ion-content>
+
+  <div class="messaging" *ngIf="canMessage">
+    <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+      <div id="message-entry">
+        <ion-textarea autocapitalize="on" appAutoresize (resize)="scrollBottom()" formControlName="message" placeholder="Message"></ion-textarea>
+        <ion-button type="submit" fill="clear" [disabled]="messageForm.invalid">
+          <ion-icon name="send" slot="icon-only"></ion-icon>
+        </ion-button>
+      </div>
+    </form>
+  </div>
+</div>

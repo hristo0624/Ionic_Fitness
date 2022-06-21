@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Assessment</ion-title>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="thank-you-container">
+    <div class="header-image">
+      <img *ngIf="user.sex === '1'" src="/assets/photos/male/assessment-1.jpg"/>
+      <img *ngIf="user.sex !== '1'" src="/assets/photos/female/assessment-1.jpg"/>
+    </div>
+    <div class="thank-you-content" padding>
+      <h3>Your Assessment has been received!</h3>
+      <p>These assessments are a vital part of your training process. Providing them to your Advisor helps them to help
+        you get the results you want.</p>
+      <ion-button expand="full" routerDirection="root" routerLink="/dashboard">Go To Dashboard</ion-button>
+    </div>
+  </div>
+</ion-content>

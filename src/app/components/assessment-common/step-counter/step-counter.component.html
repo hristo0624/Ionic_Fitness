@@ -1,0 +1,8 @@
+<div class="steps-container">
+  <div class="steps" [class.mini-mode]="miniMode">
+    <div class="step" [class.active]="step <= currentStep" *ngFor="let step of steps"></div>
+  </div>
+  <div class="step-info" *ngIf="!miniMode">
+    STEP {{ currentStep }}/ {{ totalSteps }}
+  </div>
+</div>

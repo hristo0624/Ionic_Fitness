@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-title>Create Announcement</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>Filters
+    <ion-button slot="end" color="secondary" (click)="openFilterModal()">Show</ion-button>
+  </ion-item>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <ion-item color="tertiary" text-center>
+      <ion-label>Sending to <ion-spinner name="dots" *ngIf="isFiltering"></ion-spinner> {{ filteredTransphormers }} of {{ totalTransphormers }} Transphormers</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Heading</ion-label>
+      <ion-input placeholder="Heading" formControlName="heading"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Message</ion-label>
+      <ion-textarea autocapitalize="on" rows="8" placeholder="Message Body" formControlName="announcements"></ion-textarea>
+    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button color="danger" type="button" (click)="cancel()">Cancel</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button color="primary" type="submit" [disabled]="form.invalid || isFiltering || filteredTransphormers === 0">Send Now
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

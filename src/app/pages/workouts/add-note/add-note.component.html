@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add a note</ion-title>
+    <ion-button slot="end" fill="clear" (click)="close()">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="global-input">
+    <ion-item>
+      <ion-textarea autocapitalize="on" rows="6" cols="20" placeholder="Add a note..." [value]="notes" (input)="notes=$event.target.value"></ion-textarea>
+    </ion-item>
+    <ion-button expand="full" fill="outline"  size="small" (click)="closeWithNotes()">Submit</ion-button>
+  </div>
+</ion-content>

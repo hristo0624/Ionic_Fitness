@@ -1,0 +1,24 @@
+:host {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+ion-input.newstyle {
+  --padding-start: 5px;
+  --border-radius: 2px;
+  border: 1px solid lightgray;
+  border-radius: 2px;
+}
+
+ion-label.newstyle {
+  font-weight: 300;
+}
+
+p {
+  --app-paragraph-size: 12pt;
+}
+
+form {
+  margin-top: auto;
+}
+

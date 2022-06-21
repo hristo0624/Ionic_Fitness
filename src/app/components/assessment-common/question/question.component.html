@@ -1,0 +1,32 @@
+<div class="question-container">
+  <ng-container *ngIf="!showSkeleton">
+    <h2 class="title">{{ question.title }}</h2>
+    <p padding [innerHTML]="question.description"></p>
+    <div class="options">
+      <ion-item lines="none" class="option" type="button"
+                *ngFor="let option of question.options"
+                (click)="optionSelected.emit(option)"
+                [class.selected]="option.is_selected"
+      >
+        <ion-icon mode="md" [name]="option.icon" slot="start"></ion-icon> {{ option.title }}
+      </ion-item>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="showSkeleton">
+    <h2 class="title"><ion-skeleton-text animated width="50%"></ion-skeleton-text></h2>
+    <div class="options">
+      <ion-item lines="none" class="option" type="button">
+        <ion-skeleton-text animated slot="start" width="10%"></ion-skeleton-text>
+        <ion-skeleton-text width="50%" animated></ion-skeleton-text>
+      </ion-item>
+      <ion-item lines="none" class="option" type="button">
+        <ion-skeleton-text animated slot="start" width="10%"></ion-skeleton-text>
+        <ion-skeleton-text width="50%" animated></ion-skeleton-text>
+      </ion-item>
+      <ion-item lines="none" class="option" type="button">
+        <ion-skeleton-text animated slot="start" width="10%"></ion-skeleton-text>
+        <ion-skeleton-text width="50%" animated></ion-skeleton-text>
+      </ion-item>
+    </div>
+  </ng-container>
+</div>

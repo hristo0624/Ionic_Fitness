@@ -1,0 +1,59 @@
+<div class="container">
+  <h4 class="title">Step 3: Commitments</h4>
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+    <div class="global-input">
+      <ion-label>Do you understand the importance of nutrition?</ion-label>
+      <ion-radio-group formControlName="understand_nutrition">
+        <div class="inline">
+          <div class="inline">
+            <ion-label class="options">Yes</ion-label>
+            <ion-radio mode="md" value="1"></ion-radio>
+          </div>
+          <div class="inline">
+            <ion-label class="options">No</ion-label>
+            <ion-radio mode="md" value="0"></ion-radio>
+          </div>
+        </div>
+      </ion-radio-group>
+    </div>
+
+    <div class="global-input">
+      <ion-label>Are you committed to exercising consistently to achieve your goals?</ion-label>
+      <ion-radio-group formControlName="committed_to_exercise">
+        <div class="inline">
+          <div class="inline">
+            <ion-label class="options">Yes</ion-label>
+            <ion-radio mode="md" value="1"></ion-radio>
+          </div>
+          <div class="inline">
+            <ion-label class="options">No</ion-label>
+            <ion-radio mode="md" value="0"></ion-radio>
+          </div>
+        </div>
+      </ion-radio-group>
+    </div>
+
+    <div class="global-input">
+      <ion-label>Do you understand the role supplements have in helping you achieve your
+        Transphormation goals?
+      </ion-label>
+      <ion-radio-group formControlName="understand_supplements">
+        <div class="inline">
+          <div class="inline">
+            <ion-label class="options">Yes</ion-label>
+            <ion-radio mode="md" value="1"></ion-radio>
+          </div>
+          <div class="inline">
+            <ion-label class="options">No</ion-label>
+            <ion-radio mode="md" value="0"></ion-radio>
+          </div>
+        </div>
+      </ion-radio-group>
+    </div>
+
+    <div class="buttons">
+      <ion-button type="button" (click)="movePrevious()">Previous</ion-button>
+      <ion-button type="submit" [disabled]="form.invalid">Finish</ion-button>
+    </div>
+  </form>
+</div>

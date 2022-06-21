@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Assessment</ion-title>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" type="icon" (click)="leave()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="container">
+    <div class="header-image">
+      <img *ngIf="user.sex === '1'" src="/assets/photos/male/assessment-1.jpg"/>
+      <img *ngIf="user.sex !== '1'" src="/assets/photos/female/assessment-1.jpg"/>
+    </div>
+    <div padding>
+      <h3 class="heading">Your 1<sup>st</sup> Assessment</h3>
+      <h5 padding-vertical>There is no one-size-fits all approach to getting results.</h5>
+      <p>Assessments allow your Advisor to get personal feedback to help make recommendations to fit you and your
+        goals.</p>
+      <p>To take an assessment, just answer the questions. If you have already taken photos in the last week, you can
+        use
+        those or you can take new ones.</p>
+      <p>The answers to your questions and your photos will be sent to your Advisor along with your nutrition, workout,
+        and weigh-in data. With this information, your Advisor will have better information to give you personalized
+        recommendations and make the most of your Transphormation.</p>
+      <ion-button expand="full" (click)="continue()">Continue</ion-button>
+    </div>
+  </div>
+
+</ion-content>

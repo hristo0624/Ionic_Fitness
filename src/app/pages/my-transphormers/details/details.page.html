@@ -1,0 +1,113 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/my-transphormers" text=""></ion-back-button>
+        </ion-buttons>
+        <ion-title *ngIf="transphormer">{{transphormer.display_name}}
+            <ion-icon *ngIf="transphormer.is_paid_user" name="star-outline" size="small"></ion-icon>
+            <ion-icon *ngIf="transphormer.is_my_cfl" name="link" size="small"></ion-icon>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="transphormer">
+    <!-- Photos -->
+    <div padding>
+        <app-progress-update
+                *ngIf="transphormer.latest_image"
+                [update]="transphormer.latest_image">
+        </app-progress-update>
+        <ion-button
+                (click)="goToPhotos()"
+                color="primary"
+                expand="full">
+            View all photos
+            <ion-icon name="image" slot="end"></ion-icon>
+        </ion-button>
+    <div class="content" padding-top>
+        <app-info-bit top="Age" [bottom]="dob" [middle]="transphormer.age"></app-info-bit>
+        <app-info-bit top="Started at" [middle]="transphormer.starting_weight_value"
+                      [bottom]="transphormerSinceDate"></app-info-bit>
+        <app-info-bit top="Weight" [middle]="transphormer.latest_weight ? transphormer.latest_weight.weight : '?'"
+                      [bottom]="weightLastUpdatedOn"></app-info-bit>
+        <app-info-bit top="Height" [middle]="transphormer.height_in_inches"
+                      [bottom]="'Sex: ' + (transphormer.sex === '1' ? 'M' : 'F')"></app-info-bit>
+    </div>
+    </div>
+
+    <div padding-horizontal>
+        <ion-button
+                color="primary"
+                (click)="goToTransphormersDetails()"
+                expand="full">
+            <ion-icon name="fitness" slot="end"></ion-icon>
+            View Workout Details
+        </ion-button>
+        <ion-button
+                color="secondary"
+                (click)="goToMetrics()"
+                expand="full">
+            <ion-icon name="analytics" slot="end"></ion-icon>
+            View all Weigh-ins
+        </ion-button>
+        <ion-button
+            [color]="transphormer.is_paid_user ? 'success' : 'medium'"
+            [disabled]="!transphormer.is_paid_user"
+            (click)="goToAssessments()"
+            expand="full">
+            <ion-icon name="checkbox-outline" slot="end" *ngIf="transphormer.is_paid_user"></ion-icon>
+            <ion-icon name="lock" slot="end" *ngIf="!transphormer.is_paid_user"></ion-icon>
+            Assessments
+        </ion-button>
+        <ion-button
+                [color]="transphormer.is_paid_user ? 'tertiary' : 'medium'"
+                [disabled]="!transphormer.is_paid_user"
+                (click)="goToMessages()"
+                expand="full">
+            <ion-icon name="chatboxes" slot="end" *ngIf="transphormer.is_paid_user"></ion-icon>
+            <ion-icon name="lock" slot="end" *ngIf="!transphormer.is_paid_user"></ion-icon>
+            Messages
+        </ion-button>
+        <p class="premium-disabled" *ngIf="!transphormer.is_paid_user">Transphormer is not premium. Messaging is
+            disabled.</p>
+    </div>
+
+    <ion-list-header>Workouts</ion-list-header>
+    <div class="content" padding-horizontal>
+        <app-info-bit top="Completed" [middle]="transphormer.thirty_day_completed_workouts"
+                      bottom="Last 30 Days"></app-info-bit>
+        <app-info-bit top="Completed" [middle]="transphormer.seven_day_completed_workouts"
+                      bottom="Last 7 Days"></app-info-bit>
+        <app-info-bit top="Training" bottom="Program" size="small">
+            <div class="middle">{{ trainingLevelName }}
+                <br/>{{ transphormer.access_to_gym === '1' ? gymWorkoutName : homeWorkoutName }}</div>
+        </app-info-bit>
+    </div>
+    <ion-list-header>Nutrition</ion-list-header>
+    <app-macros-bar [transphormer]="transphormer" [topRight]="transphormer.likely_to_do"
+                    [topLeft]="'Plan'"></app-macros-bar>
+    <div padding>
+        <ion-button
+                *ngIf="transphormer.likely_to_do === 'Calorie / Macro counting'"
+                (click)="goToNutritionDetails()"
+                color="primary"
+                expand="full">
+            View Nutrition Details
+            <ion-icon name="paper" slot="end"></ion-icon>
+        </ion-button>
+        <div class="content" padding-vertical>
+            <app-info-bit top="Goal Weight" [middle]="transphormer.goal_weight" bottom="Pounds"></app-info-bit>
+            <app-info-bit top="Goal" [bottom]="bottomBodyChange">
+                <div class="middle" *ngIf="transphormer.transphormation_goal === 'Primarily lose bodyfat'">Lose</div>
+                <div class="middle" *ngIf="transphormer.transphormation_goal === 'Maintain'">Maintain</div>
+                <div class="middle" *ngIf="transphormer.transphormation_goal === 'Gain lean muscle'">
+                    Gain💪💪💪💪💪💪💪💪💪💪💪
+                </div>
+            </app-info-bit>
+            <app-info-bit top="Activity" size="small" bottom="level"
+                          [middle]="transphormer.activity_level.replace(' Activity', '')"></app-info-bit>
+            <app-info-bit *ngIf="transphormer.likely_to_do === 'Macro meal plan'" top="Eating"
+                          [middle]="transphormer.meals_per_day" bottom="Meals / day"></app-info-bit>
+        </div>
+    </div>
+</ion-content>

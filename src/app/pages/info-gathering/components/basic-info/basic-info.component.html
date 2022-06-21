@@ -1,0 +1,131 @@
+<div class="container">
+    <h4 class="title">Step 2: Basic Training info and goals</h4>
+    <form [formGroup]="form" (ngSubmit)="submitForm()">
+        <div class="global-input">
+            <ion-label>What is your Transphormation goal?</ion-label>
+            <ion-select formControlName="transphormation_goal" placeholder="Please Select">
+                <ion-select-option *ngFor="let transphormationGoal of transphormationGoal"
+                                   [value]="transphormationGoal">{{
+                    transphormationGoal }}
+                </ion-select-option>
+            </ion-select>
+        </div>
+        <div class="global-input">
+            <ion-label>What is your training level?</ion-label>
+            <ion-select formControlName="training_level" placeholder="Please Select"
+                        interface-options="{cssClass: 'sample'}">
+                <ion-select-option *ngFor="let trainingLevel of trainingLevels" [value]="trainingLevel.value">{{
+                    trainingLevel.name }}
+                </ion-select-option>
+            </ion-select>
+        </div>
+        <div class="global-input">
+            <ion-label>Do you have access to a gym and plan on using it for the majority of your workouts?
+            </ion-label>
+            <ion-radio-group formControlName="access_to_gym">
+                <div class="inline">
+                    <div class="inline">
+                        <ion-label class="options">Yes</ion-label>
+                        <ion-radio mode="md" [value]="1"></ion-radio>
+                    </div>
+                    <div class="inline">
+                        <ion-label class="options">No</ion-label>
+                        <ion-radio mode="md" [value]="0"></ion-radio>
+                    </div>
+                </div>
+            </ion-radio-group>
+            <div>
+                <div class="global-input sub-part" [class.hide]="form.get('access_to_gym').value !== 1">
+                    <ion-label>Do you prefer traditional lifting plans or circuit style training or functional
+                        fitness?
+                    </ion-label>
+                    <ion-select formControlName="gym_workout_selection" placeholder="Please Select">
+                        <ion-select-option *ngFor="let programType of programTypes" [value]="programType.value">{{
+                            programType.name }}
+                        </ion-select-option>
+                    </ion-select>
+                    <div class="premium-note" [class.hide]="form.get('gym_workout_selection').value == 2 || form.get('gym_workout_selection').value == null">
+                        <p>The <strong>{{ getPt(form.get('gym_workout_selection').value || 1).name }}</strong> training program is for
+                            Premium subscribers only.
+                        </p>
+                    </div>
+                </div>
+                <div class="global-input sub-part" [class.hide]="form.get('access_to_gym').value !== 0">
+                    <ion-label>What type of equipment do you have at home or access to?</ion-label>
+                    <ion-select formControlName="home_workout_selection" placeholder="Please Select">
+                      <ion-select-option *ngFor="let homeWorkout of homeWorkouts" [value]="homeWorkout.value">{{
+                        homeWorkout.name }}
+                      </ion-select-option>
+                    </ion-select>
+                    <div class="premium-note">
+                        <p>Our at-home workouts are for Premium subscribers only.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="global-input">
+            <ion-label>What are you more likely to do?</ion-label>
+            <ion-select formControlName="likely_to_do" placeholder="Please Select">
+                <ion-select-option value="Macro meal plan">Meal plan</ion-select-option>
+                <ion-select-option value="Calorie / Macro counting">Calorie / Macro counting</ion-select-option>
+                <ion-select-option value="Portion control">Portion control</ion-select-option>
+            </ion-select>
+            <div class="premium-note" [class.hide]="!form.get('likely_to_do').value || form.get('likely_to_do').value !== 'Calorie / Macro counting'">
+                <p>The <strong>{{ form.get('likely_to_do').value }}</strong> nutrition program is for
+                    Premium subscribers only.
+                </p>
+            </div>
+            <div class="sub-part global-input" *ngIf="form.get('likely_to_do').value === 'Macro meal plan'">
+                <ion-label>How many meals per day are you wanting to eat?</ion-label>
+                <ion-radio-group formControlName="meals_per_day">
+                    <div class="inline">
+                        <div class="inline">
+                            <ion-label class="options">3</ion-label>
+                            <ion-radio mode="md" value="3"></ion-radio>
+                        </div>
+                        <div class="inline">
+                            <ion-label class="options">4</ion-label>
+                            <ion-radio mode="md" value="4"></ion-radio>
+                        </div>
+                        <div class="inline">
+                            <ion-label class="options">5</ion-label>
+                            <ion-radio mode="md" value="5"></ion-radio>
+                        </div>
+                    </div>
+                </ion-radio-group>
+            </div>
+            <div class="sub-part" *ngIf="form.get('likely_to_do').value === 'Calorie / Macro counting'">
+                <ion-label>Do you prefer Carbs or Fats?</ion-label>
+                <ion-radio-group formControlName="preference_macro_counting">
+                    <div class="inline">
+                        <div class="inline">
+                            <ion-label class="options">Both</ion-label>
+                            <ion-radio mode="md" value="Both"></ion-radio>
+                        </div>
+                        <div class="inline">
+                            <ion-label class="options">Carbs</ion-label>
+                            <ion-radio mode="md" value="Carbs"></ion-radio>
+                        </div>
+                        <div class="inline">
+                            <ion-label class="options">Fats</ion-label>
+                            <ion-radio mode="md" value="Fats"></ion-radio>
+                        </div>
+                    </div>
+                </ion-radio-group>
+            </div>
+        </div>
+        <div class="global-input">
+            <ion-label>How active are you throughout the day?</ion-label>
+            <ion-select formControlName="activity_level" placeholder="Please Select">
+                <ion-select-option *ngFor="let activeLevel of activeLevel" [value]="activeLevel">{{
+                    activeLevel }}
+                </ion-select-option>
+            </ion-select>
+        </div>
+        <div class="buttons">
+            <ion-button type="button" (click)="movePrevious()">Previous</ion-button>
+            <ion-button type="submit" [disabled]="form.invalid">Next</ion-button>
+        </div>
+    </form>
+    <!--form question end-->
+</div>

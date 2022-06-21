@@ -1,0 +1,177 @@
+.premium-header-container {
+  positive: relative;
+
+  .premium-logo {
+    background: #fff;
+    width: 16vw;
+    max-width: 60px;
+    padding: 4px;
+    left: 42vw;
+  }
+  .premium-header-black {
+    height: 10vh;
+    background: #000;
+  }
+
+  .premium-header-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.15);
+    background-image: linear-gradient(
+                    to bottom,
+                    #000,
+                    #000 18%,
+                    #ffffff 18%
+    );
+    padding: 4px;
+    margin: -10vh 32vw 4vh;
+  }
+  .premium-header-text {
+    text-transform: uppercase;
+    font-family: var(--ion-1p-font-dominant);
+    text-align: center;
+  }
+  .premium-header-subtext {
+    text-align: center;
+    font-weight: bold;
+    color: var(--ion-1p-blue-primary);
+  }
+}
+
+.premium-feature {
+  margin: 1em;
+  background: #fff;
+  padding: 12px;
+  display: flex;
+  .premium-feature-icon {
+    display: flex;
+    flex-shrink: 0;
+    align-content: center;
+    justify-content: center;
+    width:48px;
+    height: 48px;
+    padding: 4px;
+    border-radius: 50%;
+    background-image: linear-gradient(to bottom, #00A6CE, #0085CE);
+    &.coach-access {
+      padding: 2px;
+    }
+    &.meal-plan{
+      padding: 6px;
+    }
+    //&.multiple-workouts {}
+    &.live-stream {
+      padding-top: 8px;
+    }
+    &.exclusive-content {
+      padding: 10px;
+    }
+  }
+
+  .premium-feature-text {
+    margin-left: 1em;
+  }
+  .premium-feature-title {
+    font-size: var(--app-header-h5-size);
+
+  }
+  .premium-feature-description {
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 4px 0;
+      color: var(--ion-1p-blue-primary);
+    }
+    li:before {
+      content: "-";
+      text-indent: -5px;
+    }
+  }
+}
+
+.fine-print {
+  color: #fff;
+  padding-right: 16px;
+}
+
+ion-content {
+  --background: var(--ion-1p-blue-primary);
+}
+
+div.button {
+  --ion-color-primary: white;
+  --ion-color-primary-contrast: black;
+}
+
+.wob {
+  display: flex;
+  span {
+    font-size: var(--app-header-h4-size);
+    margin: 0 auto;
+    font-family: var(--ion-1p-font-dominant);
+    text-transform: uppercase;
+    color: #fff;
+    background: #000;
+    padding: 4px 5px;
+  }
+}
+
+p, li {
+  font-size: 14px;
+  a {
+    color: var(--ion-1p-darker);
+  }
+}
+
+.promo {
+  font-size: 1.5rem;
+}
+
+.iconsBox {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  ion-button {
+    --width: 150px;
+    --height: 48px;
+    width: 150px;
+    height: 48px;
+  }
+
+  ion-icon {
+    font-size: 30px;
+    padding: 10px 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .premium-header-container {
+    .premium-logo {
+      width: 16vw;
+      max-width: none;
+    }
+    .premium-header-box {
+      margin: -10vh 14vw 4vh;
+    }
+  }
+
+  p, li {
+    font-size: 12px;
+  }
+
+  .iconsBox {
+    ion-button {
+      --width: 100px;
+      --height: 40px;
+      width: 100px;
+      height: 40px;
+    }
+  }
+}
+
+h2 {
+  font-size: 24px;
+}

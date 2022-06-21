@@ -1,0 +1,13 @@
+:host {
+  width: 100%;
+}
+
+.answer {
+  padding: calc(var(--default-margin) * 1.5) calc(var(--default-margin) * 2);
+  border-bottom: 1px solid var(--ice-blue);
+  --app-header-h3-size: 14pt;
+  --app-header-h4-size: 12pt;
+  &:last-child {
+    border-bottom: 0;
+  }
+}

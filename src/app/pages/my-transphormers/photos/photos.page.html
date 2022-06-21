@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="'/details/' + transphormerId" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end" (click)="photoListingAction()">
+      <ion-icon name="more"></ion-icon>
+    </ion-buttons>
+    <ion-title>Transphormer Updates</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div id="main-updates" [ngSwitch]="allImages.length">
+  <div *ngSwitchCase="0" text-center>
+    No Images uploaded.
+  </div>
+  <div *ngSwitchCase="1">
+    <h6 class="list-header">First & Only Update</h6>
+    <app-progress-update [update]="latestImage" expanded="true"></app-progress-update>
+  </div>
+  <div *ngSwitchDefault>
+    <div class="latest-progress" *ngIf="latestImage">
+      <h6 class="list-header">Latest Progress</h6>
+      <app-progress-update [update]="latestImage"></app-progress-update>
+    </div>
+    <h6 class="list-header">Past Progress</h6>
+    <div class="older-progress">
+      <div class="older-progress-block" *ngFor="let image of images">
+        <h6 class="list-header">Uploaded on {{ formatImage(image.created_at) }}</h6>
+        <app-progress-update [update]="image" [expanded]="this.showDetails"></app-progress-update>
+      </div>
+    </div>
+  </div>
+</div>

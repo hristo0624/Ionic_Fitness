@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/" text="Login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <div class="global-container">
+    <app-logo></app-logo>
+    <form [formGroup]="form">
+      <div class="global-input">
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </div>
+      <div class="global-input">
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </div>
+      <div class="global-input">
+        <ion-label position="stacked">First Name</ion-label>
+        <ion-input type="text" formControlName="first_name"></ion-input>
+      </div>
+      <div class="global-input">
+        <ion-label position="stacked">Last Name</ion-label>
+        <ion-input type="text" formControlName="last_name"></ion-input>
+      </div>
+      <!-- <div class="global-input inline">
+        <ion-label>I am a Trainer</ion-label>
+        <ion-checkbox (ionChange)="updateStatus()"></ion-checkbox>
+      </div> -->
+      <ion-button class="global-margin-top-20" (click)="terms()" expand="full" [disabled]="form.invalid">
+        Submit
+      </ion-button>
+
+    </form>
+  </div>
+</ion-content>

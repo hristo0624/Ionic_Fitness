@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-title>My Announcements</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="create()">
+        <ion-icon slot="icon-only"
+                  color="primary"
+                  name="add"
+                  size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let announcement of announcements">
+    <ion-card-header>
+      <ion-card-title>{{ announcement.heading }}</ion-card-title>
+      <small>Sent {{ announcement.sent.format('MMMM Do, YYYY [at] h:mm a') }}</small>
+    </ion-card-header>
+
+    <ion-card-content>
+      {{ announcement.announcements }}
+    </ion-card-content>
+    <ion-chip padding color="primary">
+      <ion-icon name="people" ></ion-icon>
+      <ion-label>{{ announcement.transphormer_announcements_count }} People</ion-label>
+    </ion-chip>
+  </ion-card>
+
+  <h4 text-center padding *ngIf="announcements.length === 0">No announcements available. Please check again later.</h4>
+</ion-content>

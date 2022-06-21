@@ -1,0 +1,218 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <app-menu-button></app-menu-button>
+        </ion-buttons>
+        <ion-title>Advisor Profile</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="profile">
+    <ion-list>
+        <ion-list-header>Personal info</ion-list-header>
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="global-input">
+                <ion-label position="stacked">Address</ion-label>
+                <ion-input type="text" formControlName="address"></ion-input>
+            </div>
+            <div class="global-input">
+                <ion-label position="stacked">Address 2</ion-label>
+                <ion-input type="text" formControlName="address2"></ion-input>
+            </div>
+            <div class="global-input">
+                <ion-label position="stacked">City</ion-label>
+                <ion-input type="text" formControlName="city"></ion-input>
+            </div>
+            <div class="global-input">
+                <ion-label position="stacked">State</ion-label>
+                <ion-input type="text" formControlName="state"></ion-input>
+            </div>
+            <div class="global-input">
+                <ion-label position="stacked">Zip Code</ion-label>
+                <ion-input type="text" formControlName="postal_code"></ion-input>
+            </div>
+            <div class="global-input">
+                <ion-label position="stacked">Country</ion-label>
+                <ion-input type="text" formControlName="country"></ion-input>
+            </div>
+            <div class="global-input">
+                <ion-label position="stacked">Phone number</ion-label>
+                <ion-input type="text" formControlName="phone"></ion-input>
+            </div>
+            <ion-list-header>Social media</ion-list-header>
+            <div class="global-input">
+                <ion-label position="stacked">Facebook Group URL</ion-label>
+                <ion-input type="text" formControlName="facebook_group"></ion-input>
+            </div>
+            <div class="global-input">
+                <ion-label position="stacked">Facebook Profile URL</ion-label>
+                <ion-input type="text" formControlName="facebook"></ion-input>
+            </div>
+            <div class="global-input">
+                <ion-label position="stacked">Instagram URL</ion-label>
+                <ion-input type="text" formControlName="instagram"></ion-input>
+            </div>
+            <div class="global-input">
+                <ion-label position="stacked">Linked In URL</ion-label>
+                <ion-input type="text" formControlName="linkedin"></ion-input>
+            </div>
+            <div class="global-input">
+                <ion-label position="stacked">Pinterest URL</ion-label>
+                <ion-input type="text" formControlName="pintrest"></ion-input>
+            </div>
+            <div class="global-input">
+                <ion-label position="stacked">Twitter URL</ion-label>
+                <ion-input type="text" formControlName="twitter"></ion-input>
+            </div>
+            <div class="global-input">
+                <ion-label position="stacked">Youtube URL</ion-label>
+                <ion-input type="text" formControlName="youtube"></ion-input>
+            </div>
+            <ion-list-header>Training history</ion-list-header>
+            <div class="global-input">
+                <ion-label position="stacked">Which personal training certifications have you obtained?</ion-label>
+                <ion-radio-group formControlName="certifications">
+                    <ion-item>
+                        <ion-label class="options">NASM</ion-label>
+                        <ion-radio mode="md" slot="start" value="NASM"></ion-radio>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="options">ACSM</ion-label>
+                        <ion-radio mode="md" slot="start" value="ACSM"></ion-radio>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="options">ISSA</ion-label>
+                        <ion-radio mode="md" slot="start" value="ISSA"></ion-radio>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="options">NPTI</ion-label>
+                        <ion-radio mode="md" slot="start" value="NPTI"></ion-radio>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="options">None</ion-label>
+                        <ion-radio mode="md" slot="start" value="none"></ion-radio>
+                    </ion-item>
+                </ion-radio-group>
+            </div>
+            <div class="global-input">
+                <ion-label position="stacked">How many clients do you currently train?</ion-label>
+                <ion-radio-group formControlName="current_training_clients">
+                    <ion-item>
+                        <ion-label class="options">10-20 clients</ion-label>
+                        <ion-radio mode="md" slot="start" value="10-20 clients"></ion-radio>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="options">20+ clients</ion-label>
+                        <ion-radio mode="md" slot="start" value="20+ clients"></ion-radio>
+                    </ion-item>
+                </ion-radio-group>
+            </div>
+            <div class="global-input">
+                <ion-label position="stacked">How many years have you been training clients?</ion-label>
+                <ion-radio-group formControlName="years_training">
+                    <ion-item>
+                        <ion-label class="options">1-2 years</ion-label>
+                        <ion-radio mode="md" slot="start" value="1-2 years"></ion-radio>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="options">2-5 years</ion-label>
+                        <ion-radio mode="md" slot="start" value="2-5 years"></ion-radio>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="options">5+ years</ion-label>
+                        <ion-radio mode="md" slot="start" value="5+ years"></ion-radio>
+                    </ion-item>
+                </ion-radio-group>
+            </div>
+            <div class="global-input">
+                <ion-label position="stacked">Do you currently write nutrition plans for your clients?</ion-label>
+                <ion-radio-group formControlName="creates_nutrition_plans">
+                    <ion-item>
+                        <ion-label class="options">Yes</ion-label>
+                        <ion-radio mode="md" slot="start" value="1"></ion-radio>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="options">No</ion-label>
+                        <ion-radio mode="md" slot="start" value="0"></ion-radio>
+                    </ion-item>
+                </ion-radio-group>
+            </div>
+            <div class="global-input">
+                <ion-label position="stacked">Have you passed the Legionnaire Basic Training Certification?</ion-label>
+                <ion-radio-group formControlName="passed_basic_training">
+                    <ion-item>
+                        <ion-label class="options">Yes</ion-label>
+                        <ion-radio mode="md" slot="start" value="1"></ion-radio>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="options">No</ion-label>
+                        <ion-radio mode="md" slot="start" value="0"></ion-radio>
+                    </ion-item>
+                </ion-radio-group>
+            </div>
+            <div class="global-input">
+                <ion-label position="stacked">Do you make supplement recommendations to your clients?</ion-label>
+                <ion-radio-group formControlName="recommends_supplements">
+                    <ion-item>
+                        <ion-label class="options">Yes</ion-label>
+                        <ion-radio mode="md" slot="start" value="1"></ion-radio>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="options">No</ion-label>
+                        <ion-radio mode="md" slot="start" value="0"></ion-radio>
+                    </ion-item>
+                </ion-radio-group>
+            </div>
+            <div class="global-input">
+                <ion-label position="stacked">Do you currently have a Legionnaire Coach?</ion-label>
+                <ion-radio-group formControlName="has_legionnaire_coach">
+                    <ion-item>
+                        <ion-label class="options">Yes</ion-label>
+                        <ion-radio mode="md" slot="start" value="1"></ion-radio>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="options">No</ion-label>
+                        <ion-radio mode="md" slot="start" value="0"></ion-radio>
+                    </ion-item>
+                </ion-radio-group>
+            </div>
+            <div class="global-input" *ngIf="form.get('has_legionnaire_coach').value == 1">
+                <ion-label position="stacked">Who is your legionnaire coach?</ion-label>
+                <ion-input type="text" formControlName="legionnaire_coach"></ion-input>
+            </div>
+            <div class="global-input">
+                <ion-label position="stacked">Do you currently write workout programs for your clients?</ion-label>
+                <ion-radio-group formControlName="creates_workout_plans">
+                    <ion-item>
+                        <ion-label class="options">Yes</ion-label>
+                        <ion-radio mode="md" slot="start" value="1"></ion-radio>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="options">No</ion-label>
+                        <ion-radio mode="md" slot="start" value="0"></ion-radio>
+                    </ion-item>
+                </ion-radio-group>
+            </div>
+            <div class="global-input">
+                <ion-label position="stacked">How do you primarily train your clients?</ion-label>
+                <ion-radio-group formControlName="how_train_clients">
+                    <ion-item>
+                        <ion-label class="options">In Person</ion-label>
+                        <ion-radio mode="md" slot="start" value="in-person"></ion-radio>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="options">Online</ion-label>
+                        <ion-radio mode="md" slot="start" value="online"></ion-radio>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label class="options">Both</ion-label>
+                        <ion-radio mode="md" slot="start" value="both"></ion-radio>
+                    </ion-item>
+                </ion-radio-group>
+            </div>
+            <div slot="fixed" class="global-input padding">
+                <ion-button type="submit" expand="full" [disabled]="form.invalid">Save Profile</ion-button>
+            </div>
+        </form>
+    </ion-list>
+</ion-content>

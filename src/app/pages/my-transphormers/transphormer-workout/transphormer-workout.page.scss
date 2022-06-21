@@ -1,0 +1,16 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  font-size: larger;
+  height: calc(100vh - 44px);
+}
+
+.listing {
+  flex: 1;
+  overflow-y: scroll;
+}
+
+.centered {
+  text-align: center;
+  padding: 4em 1em;
+}

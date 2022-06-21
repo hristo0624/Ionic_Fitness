@@ -1,0 +1,34 @@
+:host {
+  --option-border-color: rgba(0, 0, 0, 0.15);
+  --option-selected-background: rgba(0, 0, 0, 0.1)
+}
+
+p {
+  font-size: 12pt;
+}
+
+.question-container {
+  .title {
+    padding: 10px 15px 30px;
+  }
+
+  .options {
+    .option {
+      border-top: 1px solid var(--option-border-color);
+      font-size: 15px;
+      font-weight: 600;
+      --padding-top: 20px;
+      --padding-bottom: 20px;
+      --paddint-start: 5px;
+      --padding-end: 5px;
+
+      &.selected {
+        --background: var(--option-selected-background);
+      }
+
+      &:last-child {
+        border-bottom: 1px solid var(--option-border-color);
+      }
+    }
+  }
+}

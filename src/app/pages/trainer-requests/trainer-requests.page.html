@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-title *ngIf="!hasTrainer">Find Advisor</ion-title>
+    <ion-title *ngIf="hasTrainer">My Advisor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="checkComplete">
+  <app-trainer-request *ngIf="!hasTrainer" (trainerSelect)="newTrainerApplication($event)"></app-trainer-request>
+  <app-trainer-application *ngIf="!canMessage && hasTrainer" [application]="application" [user]="user" (cancelApplication)="removeApplicationStatus()"></app-trainer-application>
+  <app-trainer-profile *ngIf="hasTrainer && canMessage && trainer" [user]="user" [trainer]="trainer" (drop)="dropTrainer()"></app-trainer-profile>
+</ion-content>

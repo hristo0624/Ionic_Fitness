@@ -1,0 +1,36 @@
+ion-icon {
+  color: var(--ion-color-primary-contrast);
+  padding-right: 10px;
+  font-size: 24px;
+}
+
+.list-header {
+  background-color: var(--ion-color-header);
+  padding: 10px;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.older-progress {
+  height: calc(100vh - 308px);
+  overflow-y: scroll;
+}
+
+#main-updates {
+  height: calc(100vh - 44px);
+}
+
+.plt-android #main-updates {
+  height: calc(100vh - 74px);
+}
+
+@media screen and (max-width: 768px) {
+  .thumbnail {
+    height: auto;
+
+    img {
+      height: auto;
+    }
+  }
+}

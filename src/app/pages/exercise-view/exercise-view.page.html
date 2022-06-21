@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/workouts" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Training Program</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <section class="video" *ngIf="exercise">
+    <div class="tutorial-video padding">
+      <div class="heading">
+        <h4>{{ exercise.name }}</h4>
+        <div class="body-parts">
+          <p class="tags" *ngFor="let tag of exercise.tags">{{ tag.name }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="video-container" *ngIf="exercise.link">
+      <iframe *ngIf="exercise.link.indexOf('m3u8') === -1" [src]="exercise.link | safeUrl" width="100%" height="250px" frameborder="0"></iframe>
+      <video *ngIf="exercise.link.indexOf('m3u8') !== -1" controls [src]="exercise.link | safeUrl" width="100%" height="250px"></video>
+    </div>
+    <div class="exercise padding" *ngIf="exercise.alternate_exercises.length !== 0">
+      <div class="caption">
+        <h5 class="title">Alternate exercise</h5>
+        <div class="inline" *ngFor="let alternate of exercise.alternate_exercises" (click)="goToAlternateExercise(alternate.id)">
+          <p class="name">{{ alternate.name }}</p>
+          <ion-button fill="clear">
+            <ion-icon color="primary" name="arrow-forward"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </div>
+    <div class="modification-notes padding">
+      <h5 class="title">Modification Notes</h5>
+      <p>{{ exercise.modification_notes }}</p>
+    </div>
+    <div class="expect padding">
+      <h5 class="title">What to do</h5>
+      <p>{{ exercise.description }}</p>
+    </div>
+  </section>
+</ion-content>

@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="backHref"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Assessments</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{ 'message-form-open': messageFormOpen }">
+  <header *ngIf="assessment">
+    <ion-button [disabled]="!hasPreviousAssessment" (click)="previousAssessment()" fill="clear">
+      <ion-icon size="large" name="arrow-round-back" slot="icon-only" color="light-gray-blue"></ion-icon>
+    </ion-button>
+    <h5 class="semibold" text-center margin-vertical>
+      {{ assessmentStartDate.format("MMM D 'YY") }} - {{ assessmentEndDate.format("MMM D 'YY") }}
+    </h5>
+    <ion-button [disabled]="!hasNextAssessment" (click)="nextAssessment()" fill="clear">
+      <ion-icon size="large" name="arrow-round-forward" slot="icon-only" color="light-gray-blue"></ion-icon>
+    </ion-button>
+  </header>
+
+
+  <section class="loader" *ngIf="loadingAssessment">
+    <ion-spinner name="dots"></ion-spinner>
+  </section>
+
+  <app-assessment-view *ngIf="!loadingAssessment && assessmentData" [assessment]="assessmentData">
+  </app-assessment-view>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed" *ngIf="!messageFormOpen">
+    <ion-fab-button color="light">
+      <ion-icon name="arrow-dropleft"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="start">
+      <ion-fab-button color="light" (click)="messageFormOpen = true">
+        <ion-icon name="create"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <section *ngIf="assessments.length === 0" margin-vertical padding>
+    No assessments have been completed.
+  </section>
+
+</ion-content>
+
+<div class="messaging" *ngIf="messageFormOpen">
+  <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+    <div id="message-entry">
+      <ion-textarea rows="3" formControlName="message" placeholder="Message"></ion-textarea>
+      <div class="send-cancel-bar">
+        <ion-button type="submit" fill="clear" (click)="messageFormOpen = false">
+          <ion-icon name="close" slot="start"></ion-icon>
+          Cancel
+        </ion-button>
+        <ion-button type="submit" fill="clear" [disabled]="messageForm.invalid">
+          <ion-icon name="send" slot="start"></ion-icon>
+          Send
+        </ion-button>
+      </div>
+    </div>
+  </form>
+</div>

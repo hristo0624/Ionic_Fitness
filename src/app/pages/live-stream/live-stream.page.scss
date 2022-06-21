@@ -1,0 +1,169 @@
+.live-stream {
+  display: flex;
+  flex-direction: column;
+}
+
+.error, .loading {
+  height: 100vh;
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ios .live-stream {
+  height: calc(100vh - 44px);
+}
+
+.md .live-stream {
+  height: calc(100vh - 56px);
+}
+
+.message-container {
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  height: calc(100vw * (9 / 16));
+  width: 100vw;
+
+  .ended-message {
+    color: white;
+    text-transform: uppercase;
+    font-family: var(--ion-1p-font-dominant);
+  }
+}
+
+.video-container {
+  background-color: black;
+  height: calc(100vw * (9 / 16));
+  width: 100vw;
+
+  video {
+    height: calc(100vw * (9 / 16));
+    width: 100vw;
+  }
+}
+
+$stickyColor: #e6f7fd;
+
+.sticky.feed-item {
+  border-top: 2px solid var(--ion-1p-blue-primary);
+  border-bottom: 2px solid var(--ion-1p-blue-primary);
+  background-color: $stickyColor;
+  font-size: 100%;
+}
+
+.timestamp {
+  font-size: 80%;
+  color: var(--ion-color-medium);
+  margin-left: 8px;
+}
+
+@keyframes slideInSmooth {
+  0% {
+    background: var(--ion-1p-blue-primary);
+  }
+  100% {
+    background: inherit;
+  }
+}
+
+@keyframes stickyAppear {
+  0% {
+    background-color: $stickyColor;
+  }
+  25% {
+    background-color: #fff;
+  }
+
+  50% {
+    background-color: $stickyColor;
+  }
+  75% {
+    background-color: #fff;
+  }
+  100% {
+    background-color: $stickyColor;
+  }
+}
+
+.slide-in {
+  animation: slideInSmooth ease-in 1;
+  animation-fill-mode: forwards;
+  animation-duration: 750ms;
+}
+
+.sticky.slide-in {
+  animation: stickyAppear ease-in 1;
+  animation-fill-mode: forwards;
+  animation-duration: 750ms;
+  background: green;
+}
+
+.feed-item {
+  display: flex;
+  padding: 16px 12px;
+  flex-direction: column;
+  border-bottom: 1px solid #eee;
+
+  .author {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    vertical-align: middle;
+    ion-icon {
+      margin-right: 4px;
+      color: var(--ion-1p-blue-primary)
+    }
+  }
+
+  .top {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+
+  .text {
+    margin-top: 6px;
+    color: #333;
+    font-size: 85%;
+    white-space: pre-line;
+  }
+}
+
+.feed {
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-top: 16px;
+}
+
+#message-entry {
+  padding: 5px;
+  display: flex;
+  width: 100vw;
+  background: black;
+  flex-direction: row;
+  align-items: flex-end;
+
+  ion-textarea {
+    background: #fff;
+    height: 32px;
+    line-height: 22px;
+    min-height: 32px;
+    --padding-top: 5px;
+    --padding-start: 5px;
+    --padding-end: 5px;
+    --padding-bottom: 5px;
+  }
+
+  ion-button {
+    height: auto;
+    margin: 0;
+    --padding-start: 8px;
+    --padding-end: 2px;
+  }
+}
+
+@import 'video';

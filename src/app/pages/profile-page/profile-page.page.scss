@@ -1,0 +1,22 @@
+.profile {
+  form {
+    padding-bottom: 20px;
+  }
+}
+
+ion-list-header {
+  --background: var(--ion-color-header);
+}
+
+.premium-note {
+  margin: calc(var(--default-margin) * -1) calc(var(--default-margin) * 2)
+    calc(var(--default-margin) * 3);
+  background: var(--ion-color-warning-lightest);
+  padding: var(--default-margin);
+  // border: 4px solid var(--ion-color-warning);
+  p {
+    font-size: 12pt;
+    margin-top: 0;
+    margin-bottom: var(--default-margin);
+  }
+}

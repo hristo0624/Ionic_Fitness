@@ -1,0 +1,27 @@
+<div class="photo-review-container" padding>
+  <h2 class="title">Photos</h2>
+  <div class="photo-list">
+    <div class="loading" *ngIf="loading">
+      <div class="ion-text-center">
+        <ion-spinner name="dots"></ion-spinner>
+      </div>
+    </div>
+    <app-photo-preview *ngIf="selectedPhoto" [photo]="selectedPhoto"></app-photo-preview>
+  </div>
+
+  <p *ngIf="selectedPhoto">You can use the photos shown above, or you can take new photos.</p>
+  <p *ngIf="!selectedPhoto">Take some photos in order to complete your assessment.</p>
+
+  <ion-button expand="full" fill="outline" class="retake-action"
+              (click)="takeNewPhoto()">
+    Take {{ selectedPhoto ? 'New' : '' }} Photos
+  </ion-button>
+
+  <div class="next">
+    <ion-button expand="full" (click)="jumpToSummary()"
+                [disabled]="!selectedPhoto">
+      Next
+    </ion-button>
+  </div>
+
+</div>

@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Pick a {{headerTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item (click)="removeSelection()">
+      <ion-label>None</ion-label>
+      <ion-icon *ngIf="checkedNutritionId === null" name="checkmark-circle"></ion-icon>
+    </ion-item>
+    <ion-item (click)="selectItem(item)" *ngFor="let item of nutritionItems">
+      <ion-label> {{item.name}}</ion-label>
+      <p *ngIf="showAmounts">{{nutritionValue(item.name)}} {{item.unit}}</p>
+      <ion-icon *ngIf="checkedNutritionId === item.id" name="checkmark-circle"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>

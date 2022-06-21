@@ -1,0 +1,100 @@
+ion-list, .message-listing {
+  padding: 5px 0;
+  flex: 1;
+  overflow-y: scroll;
+  display: flex;
+  margin: 0 5vw;
+  flex-direction: column;
+}
+
+.text {
+  font-size: 12px;
+  white-space: pre-line;
+}
+
+.chat-wrapper {
+  margin: 15px 5vw;
+
+  ion-item {
+    --border-width: 0 !important;
+  }
+
+  .text {
+    padding-bottom: 5px;
+    margin: 5px;
+    font-size: 13pt;
+  }
+}
+
+.msg-block {
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+.chat-sender {
+  background-color: #d3d3d3;
+  margin-left: 5vw;
+
+  .text {
+    text-align: right;
+  }
+
+  .time {
+    font-size: 10pt;
+    text-align: right;
+  }
+}
+
+.chat-receiver {
+  background-color: #aed8e6;
+  margin-right: 5vw;
+
+  .text {
+    text-align: left;
+  }
+
+  .time {
+    font-size: 10pt;
+    text-align: left;
+  }
+}
+
+.messaging {
+  min-height: 45px;
+  width: 100vw;
+  background: #000;
+}
+
+.danger {
+  color: var(--ion-color-danger);
+}
+
+#messaging-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#message-entry {
+  padding: 5px;
+  display: flex;
+  width: 100vw;
+  flex-direction: row;
+  align-items: flex-end;
+  ion-textarea {
+    background: #fff;
+    height: 32px;
+    line-height: 22px;
+    min-height: 32px;
+    --padding-top: 5px;
+    --padding-start: 5px;
+    --padding-end: 5px;
+    --padding-bottom: 5px;
+  }
+  ion-button {
+    height: auto;
+    margin: 0;
+    --padding-start: 8px;
+    --padding-end: 2px;
+  }
+}

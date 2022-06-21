@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="selectionActions()">
+        <ion-icon name="more"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Advisor Requests</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngIf="!applications || applications.length === 0">
+      No requests currently pending.
+    </ion-item>
+    <ion-item-sliding *ngFor="let application of applications" >
+      <ion-item lines="none">
+        <ion-avatar large slot="start">
+          <ion-icon name="contact" size="large"></ion-icon>
+        </ion-avatar>
+        <ion-label>{{ application.transphormer.first_name }} {{ application.transphormer.last_name }}</ion-label>
+        <ion-label [color]="application.status === 'waiting' ? 'warning' : 'success'" >{{ application.status === 'waiting' ? 'Pending': 'Accepted' }}</ion-label>
+      </ion-item>
+      <ion-item-options side="start" *ngIf="application.status === 'waiting'">
+        <ion-item-option (click)="acceptApplication(application)" color="primary">Accept</ion-item-option>
+      </ion-item-options>
+      <ion-item-options side="end">
+        <ion-item-option (click)="deleteApplication(application)" color="danger">Remove</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

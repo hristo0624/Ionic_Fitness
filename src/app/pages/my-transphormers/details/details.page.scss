@@ -1,0 +1,76 @@
+ion-list-header {
+  --background: var(--ion-color-header);
+}
+
+.inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+p {
+  font-size: 16px;
+}
+
+.thumbnail {
+  height: 150px;
+  margin: 10px;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.section-header {
+  background: #d6e1f8;
+  padding: 5px 10px;
+
+  .heading ion-icon {
+    font-size: 24px;
+    padding-right: 10px;
+  }
+
+  ion-icon {
+    font-size: 30px;
+  }
+}
+
+.content {
+  // margin: 0 20px;
+  justify-content: space-around;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.workouts {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  text-align: center;
+  margin: 24px 0;
+  .indicators > div, .days {
+    display: flex;
+    flex-direction: row;
+    justify-content: center
+  }
+  .indicator, .days > div {
+    width: 12vw;
+  }
+  > div {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
+
+ion-content > ion-list {
+  margin-bottom: 24px;
+}
+
+p.premium-disabled {
+  text-align: center;
+  font-size: 75%;
+  font-weight: bold;
+  color: var(--ion-1p-gray);
+}

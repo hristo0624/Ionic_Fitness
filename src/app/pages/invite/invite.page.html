@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Invite Transphormers</ion-title>
+        <ion-buttons slot="start">
+            <app-menu-button></app-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <div>
+        <app-logo></app-logo>
+        <p>Tap the button below to copy your URL to the clipboard.
+            Share it on Social media, chat programs, or anywhere else.</p>
+        <p>This URL includes your legionnaire ID!</p>
+        <div class="ion-text-center">
+            <p class="email-link">{{link}}</p>
+        </div>
+        <div>
+            <ion-button expand="full" size="large" class="ion-margin-top" (click)="copyLink()">Copy URL to the Clipboard</ion-button>
+        </div>
+    </div>
+</ion-content>

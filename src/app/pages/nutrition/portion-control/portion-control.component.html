@@ -1,0 +1,51 @@
+<ion-item text-wrap padding-top *ngIf="shouldShowHelp()">
+  <div>This is a portion control diet plan. For maximum results, at each meal choose one protein (palm sized serving), one carb (fist sized serving), and one veggie (fist size serving). The Palm, Fist, Fist plan is easy and extremely effective!
+  <ng-container *ngIf="!getUser().is_paid_user"><br/><br/>
+    For customized meal plans or macro-counting option click <a (click)="goTo('subscription')">here</a>.
+  </ng-container>
+    <div text-center padding-vertical><ion-button (click)="hideHelp()">Hide this</ion-button>
+    </div>
+  </div>
+</ion-item>
+<ion-item text-wrap *ngIf="portionControlHelpHidden()">
+  <ion-label>Portion control help</ion-label>
+    <div slot="end" text-center padding-vertical><ion-button (click)="showHelp()">Show</ion-button>
+    </div>
+</ion-item>
+<ion-list-header *ngIf="showPdf">
+  Recommended Food Guide
+</ion-list-header>
+<ion-item *ngIf="showPdf">
+  <ion-label>Guide</ion-label>
+  <ion-button size="small" (click)="openPdf()">View</ion-button>
+</ion-item>
+<ng-container *ngFor="let parent of parents">
+  <ion-list-header>{{parent.name}}</ion-list-header>
+  <ion-item *ngFor="let category of parent.categories; let last = last" [lines]="last ? 'none' : 'full'">
+    <ng-container *ngIf="category.type !== 'supplement' && category.type !== 'ignition'">
+      <ion-label class="unselected" *ngIf="!category.selectedNutrition">{{ category.name }}</ion-label>
+      <ion-label class="dark"
+                 *ngIf="category.selectedNutrition">{{ category.selectedNutrition.name }}
+        <span *ngIf="showAmounts">({{ category.selectedNutrition.calculatedQuantity }} {{ category.selectedNutrition.unit }})</span>
+      </ion-label>
+    </ng-container>
+    <ng-container *ngIf="category.type === 'supplement' || category.type === 'ignition'">
+      <ion-label>{{ category.name }}</ion-label>
+    </ng-container>
+
+    <ng-container *ngIf="category.type !== 'supplement' && category.type !== 'ignition'">
+      <ion-button size="small" *ngIf="category.selectedNutrition === null"
+                  (click)="pickItem(category)">Add
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+      <ion-button size="medium" *ngIf="category.selectedNutrition !== null" fill="clear"
+                  (click)="pickItem(category)">
+        <ion-icon name="checkmark-circle"></ion-icon>
+      </ion-button>
+    </ng-container>
+    <ng-container *ngIf="category.type === 'supplement' || category.type === 'ignition'">
+      <ion-checkbox [(ngModel)]="category.selectedNutrition"
+                    (ionChange)="updateNutritionValue()"></ion-checkbox>
+    </ng-container>
+  </ion-item>
+</ng-container>

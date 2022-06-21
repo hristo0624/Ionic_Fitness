@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <app-menu-button></app-menu-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="photoListingAction()">
+                <ion-icon slot="icon-only" name="more"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>My Photos</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content scrollY="false" *ngIf="allImages.length !== 0">
+    <div class="container">
+        <div class="latest-progress" *ngIf="latestImage">
+            <h6 class="list-header">Latest Progress</h6>
+            <div class="image-set">
+                <div class="thumbnail" (click)="openZoomImg(latestImage.picture_front)">
+                    <img [src]="latestImage.picture_front" alt="">
+                </div>
+                <div class="thumbnail" (click)="openZoomImg(latestImage.picture_back)">
+                    <img [src]="latestImage.picture_back" alt="">
+                </div>
+                <div class="thumbnail" (click)="openZoomImg(latestImage.picture_side)">
+                    <img [src]="latestImage.picture_side" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="older-progress">
+            <h6 class="list-header">Past Progress</h6>
+            <div class="images-listing">
+                <div class="older-progress-block" *ngFor="let image of images">
+                    <h6 class="list-header">{{ formatImage(image.created_at) }}</h6>
+                    <div class="image-set">
+                        <div class="thumbnail" (click)="openZoomImg(image.picture_front)">
+                            <img [src]="image.picture_front" alt="">
+                        </div>
+                        <div class="thumbnail" (click)="openZoomImg(image.picture_back)">
+                            <img [src]="image.picture_back" alt="">
+                        </div>
+                        <div class="thumbnail" (click)="openZoomImg(image.picture_side)">
+                            <img [src]="image.picture_side" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>
+<ion-content *ngIf="allImages.length === 0">
+    <div class="no-photos">
+        <h6>No Images Uploaded.</h6>
+    </div>
+</ion-content>

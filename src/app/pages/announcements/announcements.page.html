@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-title>Announcements</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <section class="announcement" *ngFor="let announcement of announcements">
+    <header>
+      <h5 class="semibold">{{ announcement.trainer.transphormer.display_name }}</h5>
+      <small>Sent {{ announcement.sent.format('MMMM Do, YYYY [at] h:mm a') }}</small>
+    </header>
+    <h3>{{ announcement.heading }}</h3>
+    <div class="content" [innerHTML]="announcement.announcements"></div>
+  </section>
+
+  <div *ngIf="!announcements || announcements.length === 0" padding text-center>
+    There are no New Announcements that require your attention.<br/><br/>
+    Keep TransPHORMing 👊
+  </div>
+  <div class="fade"></div>
+</ion-content>

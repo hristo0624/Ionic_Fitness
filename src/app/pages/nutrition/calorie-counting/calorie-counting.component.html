@@ -1,0 +1,58 @@
+<div class="food-row-header">
+  <ion-grid>
+    <ion-row>
+      <ion-col offset="6" size="2">Protein(g)</ion-col>
+      <ion-col size="2">Carb(g)</ion-col>
+      <ion-col size="2">Fat(g)</ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+<ng-container *ngFor="let parent of parents">
+  <ion-list-header>{{parent.name}}</ion-list-header>
+  <ion-grid>
+    <ion-row *ngFor="let food of parent.food">
+      <ion-col size="5">
+        <ion-item>
+          <ion-input [(ngModel)]="food.name" placeholder="Food" (ionChange)="updateContent()"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col offset="1" size="2">
+        <ion-item>
+          <ion-input [(ngModel)]="food.categories[0].selectedNutrition.quantity" [min]="0" type="number"
+                     placeholder="g" (ionChange)="updateContent()"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="2">
+        <ion-item>
+          <ion-input [(ngModel)]="food.categories[1].selectedNutrition.quantity" [min]="0" type="number"
+                     placeholder="g" (ionChange)="updateContent()"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="2">
+        <ion-item>
+          <ion-input [(ngModel)]="food.categories[2].selectedNutrition.quantity" [min]="0" type="number"
+                     placeholder="g" (ionChange)="updateContent()"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ng-container>
+<div>
+  <ion-list-header>
+    Total Intake
+  </ion-list-header>
+  <ion-grid>
+    <ion-row text-center>
+      <ion-col offset="6" size="2">Total</ion-col>
+      <ion-col size="2">Total</ion-col>
+      <ion-col size="2">Total</ion-col>
+    </ion-row>
+    <ion-row text-center>
+      <ion-col offset="6">{{ protein }}</ion-col>
+      <ion-col size="2">{{ carb }}</ion-col>
+      <ion-col size="2">{{ fat }}</ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+

@@ -1,0 +1,36 @@
+.thumbnail {
+  margin-right: 10px;
+  &:last-child {
+    margin-right: 0;
+  }
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .thumbnail {
+    height: auto;
+
+    img {
+      height: auto;
+    }
+  }
+}
+
+.progress-picture-description {
+    font-weight: normal;
+    font-size: 10pt;
+    text-align: left;
+    margin-right: 10px;
+    color: var(--text-gray-1);
+}
+
+.comparison-header-row {
+  margin-right: 10px;
+}

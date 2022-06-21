@@ -1,0 +1,25 @@
+ion-select {
+  border: 1px solid #747d83;
+  border-radius: 3px;
+  margin-bottom: var(--default-margin);
+}
+
+ion-row {
+  margin: 0 -5px;
+}
+
+.inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.terms-conditons {
+  display: flex;
+  align-items: center;
+
+  p {
+    font-size: 16px;
+    padding: 0 20px;
+  }
+}

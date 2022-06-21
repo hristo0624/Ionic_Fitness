@@ -1,0 +1,22 @@
+<div class="flexible-container">
+  <div class="header-image">
+    <img *ngIf="user.sex === '1'" src="/assets/photos/male/advisor-1.jpg"/>
+    <img *ngIf="user.sex !== '1'" src="/assets/photos/female/advisor-1.jpg"/>
+  </div>
+  <div padding class="flexible-container">
+    <h4>Pending Advisor Request</h4>
+    <p *ngIf="application"><strong>{{ application.trainer.transphormer.first_name }} {{
+      application.trainer.transphormer.last_name }}</strong></p>
+    <p>
+      You've requested an Advisor, but they have not yet responded.
+    </p>
+    <p>
+      If you'd like to find another Advisor, or train by yourself, you can cancel this request.
+    </p>
+    <div class="mt-auto">
+      <div class="button global-margin-top-25">
+        <ion-button color="danger" expand="full" (click)="confirmCancel()">Cancel Advisor Request</ion-button>
+      </div>
+    </div>
+  </div>
+</div>

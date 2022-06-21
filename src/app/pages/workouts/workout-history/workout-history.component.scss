@@ -1,0 +1,47 @@
+.row {
+  display: flex;
+  padding: 10px;
+
+  .col {
+    text-align: center;
+    font-weight: 600;
+
+    &:nth-child(1) {
+      width: 50%;
+    }
+
+    &:nth-child(2) {
+      width: 25%;
+    }
+
+    &:nth-child(3) {
+      width: 25%;
+    }
+  }
+}
+
+.heading {
+  text-transform: uppercase;
+}
+
+.content {
+
+  .col {
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+
+    &:nth-child(1) {
+      text-align: left;
+    }
+
+    &.no-history {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  &:nth-child(odd) {
+    background: rgba(0, 0, 0, 0.05);
+  }
+}

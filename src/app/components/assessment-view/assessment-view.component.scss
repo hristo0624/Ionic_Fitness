@@ -1,0 +1,74 @@
+.col-header {
+  margin: 0 !important;
+  padding: 5px;
+}
+
+.header-title {
+  margin: 0 !important;
+  font-size: 17px;
+}
+
+.header-icon-style {
+  font-size: 120%;
+  color: #bebebe;
+}
+
+.workout-title {
+  margin: 0 !important;
+  font-size: 17px;
+}
+
+.workout-subtitle {
+  margin: 0 !important;
+  font-size: 14px;
+}
+
+.workout-subtitle:before {
+  content: "• ";
+  color: rgb(0, 169, 249);
+}
+
+.workout-text {
+  font-size: 12px;
+  text-align: right;
+}
+
+.workout-text {
+  font-size: 12px;
+  text-align: right;
+}
+
+ion-item.heading {
+  --inner-padding-top: 10px;
+  --inner-padding-bottom: 10px;
+  --inner-border-width: 0;
+  border-bottom: 1px solid var(--ice-blue);
+  border-top: 1px solid var(--ice-blue);
+}
+
+ion-grid {
+  padding: 0;
+}
+
+ion-row {
+  &.header {
+    font-size: 10pt;
+    color: var(--grey-mid);
+    background-color: revert;
+  }
+
+  background-color: var(--pale-grey);
+  border-bottom: 1px solid var(--ice-blue);
+  padding: 0 10px;
+  --ion-grid-column-padding: 10px;
+}
+
+.gain {
+  --color: var(--yellow-orange);
+  color: var(--yellow-orange);
+}
+
+.loss {
+  --color: var(--ion-1p-blue-primary);
+  color: var(--ion-1p-blue-primary);
+}

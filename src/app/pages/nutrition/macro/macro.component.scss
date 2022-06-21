@@ -1,0 +1,113 @@
+.macros {
+  display: flex;
+  justify-content: space-between;
+
+  strong {
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .logo {
+    width: 20%;
+    height: 3em;
+    margin-right: 20px;
+
+    img {
+      display: block;
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .content {
+    .topval {
+      div:first-child {
+        padding-right: 4px;
+      }
+      padding: 0 0 10px 0;
+      display: flex;
+      justify-content: center;
+      .col {
+        display:flex;
+        flex-direction: column;
+      }
+    }
+
+    .title {
+      font-size: 30px;
+      line-height: 12px;
+    }
+
+    p {
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .right {
+      padding-left: 10px;
+    }
+  }
+
+
+}
+
+.chart-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .pie-chart {
+    width: 70%;
+    height: 33vh;
+  }
+  .circle {
+    width: 125px;
+    height: 125px;
+    background: orange;
+    border-radius: 50%;
+  }
+
+  .cards {
+    width: 30%;
+    padding: 10px 0;
+    font-size: 12px;
+
+    .card {
+      border: 5px solid #f5f6f5;
+      margin: 10px 0;
+
+      .header {
+        text-align: center;
+        text-transform: uppercase;
+        padding: 5px 0 0 0;
+        font-weight: 900;
+      }
+
+      .value {
+        text-align: center;
+        padding: 5px;
+        font-size: 28px;
+        font-weight: 900;
+      }
+
+    }
+  }
+}
+
+.note {
+  font-size: 10px;
+  line-height: 1.3em;
+  text-align: center;
+}
+
+.protein-header {
+  color: var(--protein-color);
+}
+
+.carb-header {
+  color: var(--carbs-color);
+}
+
+.fat-header {
+  color: var(--fat-color);
+}

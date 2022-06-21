@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-title>Thank you</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="thumbnail">
+    <img
+      src="https://vignette.wikia.nocookie.net/castle-clash/images/4/4e/Celebration.png/revision/latest?cb=20170824172947"
+      alt="">
+  </div>
+  <ion-list>
+    <ion-item lines="none">
+      <p>You have a Premium subscription. Awesome!</p>
+    </ion-item>
+    <ion-item>
+      <p>You can change your Workout and Nutrition preferences in My Profile.</p>
+    </ion-item>
+  </ion-list>
+
+  <div class="button global-margin-top-25">
+    <ion-button color="primary" expand="full" routerDirection="root" routerLink="/profile-page">Update my Profile</ion-button>
+  </div>
+  <div class="button global-margin-top-25">
+    <ion-button color="primary" expand="full" routerDirection="root" routerLink="/messages">Message my Advisor</ion-button>
+  </div>
+  <div class="button global-margin-top-25">
+    <ion-button color="secondary" expand="full" routerDirection="root" routerLink="/dashboard">Back to Dashboard</ion-button>
+  </div>
+</ion-content>

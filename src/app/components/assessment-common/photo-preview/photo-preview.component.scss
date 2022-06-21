@@ -1,0 +1,17 @@
+.photo-review {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  > div {
+    width: 31%;
+  }
+
+  img {
+    object-fit: contain;
+  }
+
+  .caption {
+    font-weight: 500;
+  }
+}

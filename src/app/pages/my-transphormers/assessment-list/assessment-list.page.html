@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Assessment Review
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="reloadFeed($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Swipe down to refresh!"
+      refreshingSpinner="dots" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-segment padding [value]="this.tabState" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="unreviewed" [checked]="true">
+      <ion-label>Unreviewed
+        <ng-container *ngIf="unreviewedItemsQty"><ion-badge color="secondary">{{ unreviewedItemsQty }}</ion-badge></ng-container>
+      </ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="all">
+      <ion-label>All</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-list *ngIf="this.assessmentsData.length > 0">
+
+    <div *ngIf="pageLoaded && viewUnreviewedItemsOnly && unreviewedItemsQty == 0" text-center margin-top>
+      <ion-icon name="information-circle"></ion-icon> You have no unreviewed assessments.
+    </div>
+
+    <ion-item *ngFor="let assessment of visibleAssessments" (click)="this.openAssessmentDetail(assessment)">
+      <ion-icon size="large" slot="start" [name]="assessment.reviewed ? 'checkbox-outline' : 'square-outline'"
+                [color]="assessment.reviewed ? 'light' : 'secondary'"></ion-icon>
+      <ion-label>
+        <ion-text>{{  assessment.transphormer.display_name | titlecase  }}</ion-text>
+        <p>{{ assessment.created | date:'M/d/yyyy' }}</p>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+  <div *ngIf="pageLoaded && this.assessmentsData.length === 0" text-center margin-top>
+    <ion-icon name="information-circle"></ion-icon> You have no assessments to review.
+  </div>
+
+</ion-content>

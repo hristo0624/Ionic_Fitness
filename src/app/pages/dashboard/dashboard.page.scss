@@ -1,0 +1,194 @@
+ion-content {
+  --background: white;
+}
+
+ion-icon {
+  color: var(--ion-color-icon);
+}
+
+.unavailable-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background: var(--ion-color-danger-lightest);
+  color: var(--ion-color-danger);
+  --ion-color-icon: var(--ion-color-danger);
+  padding: 2em 0;
+  font-weight: bold;
+  ion-icon {
+    margin-right: 8px;
+  }
+}
+
+.video-unavailable {
+  margin: 1em 0;
+}
+
+.db-logo {
+  height: 22px;
+}
+
+.inline {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.inline-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card {
+  background-color: var(--ion-1p-lightest);
+  padding: 16px 24px;
+  margin-top: 12px;
+  .header {
+    font-weight: bold;
+    color: var(--ion-1p-darkest);
+    display: flex;
+    text-transform: uppercase;
+    justify-content: space-between;
+  }
+}
+
+.padded {
+  padding: 24px;
+}
+
+.purple {
+  --ion-color-base: #4267b2;
+  --app-paragraph-size: 36px;
+  --border-color: #4267b2;
+  --color: #4267b2;
+  --ion-color-icon: #4267b2;
+}
+
+.workouts {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  margin: 24px 0;
+  > div {
+    svg {
+      width: 24px;
+      height: auto;
+      margin-bottom: 4px;
+      circle {
+        stroke-width: 3;
+        stroke: var(--ion-color-success);
+        fill: none;
+      }
+      &.completed {
+        circle {
+          fill: var(--ion-color-success);
+        }
+      }
+      &.future {
+        circle {
+          stroke: #999;
+        }
+      }
+    }
+    font-weight: bold;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.macros {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin-bottom: 24px;
+  app-dashboard-macro {
+    width: 23%;
+    margin: 10px 0 0 0;
+  }
+}
+
+.weigh-ins {
+  margin: 16px 0;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  > div div {
+    &:nth-child(1) {
+      text-transform: uppercase;
+      font-size: .75em;
+      font-weight: bold;
+    }
+    &:nth-child(2) {
+      font-size: 225%;
+      font-weight: bold;
+      line-height: 1em;
+    }
+  }
+}
+
+.dim {
+  color: #999;
+}
+
+.videos {
+  min-height: 250px;
+}
+
+.video {
+  background-color: #000;
+  border-radius: 5px;
+  display: flex;
+  margin-bottom: 1em;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+
+  p {
+    padding: 0 1em;
+    font-size: 15pt;
+    color: var(--ion-1p-lightest);
+    text-transform: uppercase;
+    font-weight: bold;
+    position: absolute;
+    text-align: center;
+    text-shadow: -1px 0px 1px black, 0px -1px 1px black, 0px 1px 1px black, 1px 0px 1px black;
+  }
+
+  div.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  img {
+    &:after {
+      content: ' ';
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
+button.logo-button {
+  background: inherit;
+  --background: inherit;
+}
+
+.tb-logo {
+  background-image: url('../../../assets/icon/logo.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  font-size: 32px;
+  width: 1em;
+  height: 1em;
+}

@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button [defaultHref]="backHref"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Workout Details</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<div class="content">
+  <div class="listing" *ngIf="twoWeeksWorkout.length > 0">
+    <div *ngFor="let workout of twoWeeksWorkout">
+      <app-workout
+        [sessionWorkout]="workout"
+      >
+      </app-workout>
+    </div>
+  </div>
+  <div *ngIf="twoWeeksWorkout.length === 0" class="centered">
+      No Workout data available for the last 2 weeks.
+  </div>
+</div>

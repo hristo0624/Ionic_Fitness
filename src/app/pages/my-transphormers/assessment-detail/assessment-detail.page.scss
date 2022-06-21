@@ -1,0 +1,47 @@
+h5 {
+  width: 100%;
+}
+
+.message-form-open {
+  --offset-bottom: -100px !important;
+}
+
+.messaging {
+  width: 98vw;
+  background: var(--ice-blue);
+  border-radius: 3px;
+  justify-content: center;
+  padding: 2px;
+  margin: 9px auto 0 auto;
+  position: absolute;
+  bottom: 0;
+  left: 1%;
+
+  #message-entry {
+    padding: 3px 3px 0 3px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-end;
+
+    ion-textarea {
+      background: #fff;
+      --padding-top: 5px;
+      --padding-start: 5px;
+      --padding-end: 5px;
+      --padding-bottom: 5px;
+    }
+
+    ion-button {
+      margin: 0;
+    }
+  }
+
+  .send-cancel-bar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px 5px 0 5px;
+  }
+}

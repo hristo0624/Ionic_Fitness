@@ -1,0 +1,14 @@
+.bottom-btn {
+  margin-top: 20px;
+  bottom: 10px;
+  ion-button {
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+}
+
+.inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

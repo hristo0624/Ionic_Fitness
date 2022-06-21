@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-title>Live Streams</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher [disabled]="false" slot="fixed" (ionRefresh)="refreshContent($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="liveVideo">
+    <div class="live-video">
+      <app-video-player
+        [video]="liveVideo"
+        (playbackProblem)="videoError()"
+        (playing)="playing = true"
+        (paused)="playing = false"
+        [events]="playerEvents"
+        [live]="true">
+      </app-video-player>
+      <div class="live" padding-top>
+        <h5 text-center>Live Stream in Progress</h5>
+        <div class="button" padding>
+          <ion-button color="primary" expand="full" (click)="goToLiveStream()">Join Now</ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-container  *ngIf="!liveVideo">
+    <div class="no-videos">
+      <p text-center padding-horizontal>Not streaming right now. Check out one of the previous live streams below.</p>
+    </div>
+  </ng-container>
+
+  <ion-list>
+    <ion-list-header>Previous Live Streams</ion-list-header>
+    <ion-item *ngFor="let video of videos.videos" lines="none">
+      <div class="content">
+        <div (click)="openVideo(video)" class="vod">
+            <div class="thumbnail">
+              <ion-img [src]="(video.thumbnail)" [alt]="video.title"></ion-img>
+              <div class="play-now">
+                <ion-icon name="play"></ion-icon> Play
+              </div>
+            </div>
+            <div class="bottom">
+              <h5><b>{{video.title}}</b></h5>
+              <div class="details">
+                <div class="time"> {{ publishDate(video) }}</div>
+                <div>&bull;</div>
+                <div>{{ videoDate(video) }}</div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end" (click)="workoutsInfo()">
+      <ion-icon color="primary" name="help" size="large"></ion-icon>
+    </ion-buttons>
+    <ion-title>My Workout</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<app-calendar [minDate]="minDate" [dateTime]="actingDate" [format]="'dddd, M/D'" (dateChange)="onDateChange($event)"></app-calendar>
+<ion-content>
+  <section class="exercises" *ngIf="workoutSession">
+    <!-- Workout name -->
+    <div class="workout-name" *ngIf="!workoutSession.completed">
+      {{ workoutSession.workout.name }}
+    </div>
+    <p class="on-home-workout"
+       *ngIf="transphormer.is_paid_user && transphormer.access_to_gym && workoutSession.switched_to_home"
+    >
+      You're seeing this workout because you chose to do an at-home workout instead of your regular workout.
+    </p>
+    <ion-item
+      *ngIf="workoutSession.switched_to_home">
+      <ion-button class="centered" type="button" fill="clear" expand="full" (click)="revertToGymWorkout()">
+        <ion-icon name="undo" slot="start"></ion-icon>
+        Switch Back
+      </ion-button>
+    </ion-item>
+    <div class="workout-name completed" *ngIf="workoutSession.completed">
+        <ion-icon color="success" size="small" name="checkmark"></ion-icon> <span>Workout Completed</span>
+    </div>
+    <div class="rest-day" *ngIf="workoutSession.workout.is_rest_day === 1">
+      <h3>Rest Day</h3>
+      <p>Go for a walk. Take a break.</p>
+      <p><app-logo></app-logo></p>
+    </div>
+    <ion-list>
+      <ion-item-group *ngFor="let group of workoutSession.workout.exercise_groups">
+        <ion-item-divider>
+          <ion-label slot="start">{{group.name || 'Workout'}}</ion-label>
+          <ion-label slot="end" *ngIf="group.group_time > 0">{{ minSec(group.group_time) }}</ion-label>
+        </ion-item-divider>
+        <ion-item class="instructions" *ngIf="group.instructions">
+          <ion-label text-wrap>{{ group.instructions }}</ion-label>
+        </ion-item>
+        <ion-item class="repeat-instructions" *ngIf="group.repeat === 2">
+          <ion-label>Repeat {{ group.total_sets }}x</ion-label>
+        </ion-item>
+        <ion-item class="repeat-instructions" *ngIf="group.repeat === 3">
+          <ion-label>Repeat for {{ group.group_time }}</ion-label>
+        </ion-item>
+        <ion-item class="repeat-instructions" *ngIf="group.repeat === 4">
+          <ion-label>Repeat {{ group.total_sets }}x or for {{ group.group_time }}</ion-label>
+        </ion-item>
+        <ion-item class="exercise" *ngFor="let exercise of group.exercises">
+          <ion-label text-wrap>
+            <span class="name">{{ exercise.name }}</span>
+            <p class="instructions">{{ exercise.instructions }}</p>
+            <p class="last-exercise-info" *ngIf="showStatsIcon(exercise) && exercise.last_exercise_records">{{ exercise.last_exercise_records }}</p>
+          </ion-label>
+          <div slot="end">
+            <ion-button fill="clear" (click)="openTrackingModal(exercise)" *ngIf="showStatsIcon(exercise)">
+              <ion-icon slot="icon-only" color="medium" name="stats"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" routerLink="/exercises/{{exercise.exercise.id}}">
+              <ion-icon slot="icon-only" color="medium" name="information-circle-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-item>
+      </ion-item-group>
+      <ion-item-group>
+        <ion-item *ngIf="!workoutSession.completed">
+          <ion-button class="centered full-width" size="default" type="button" color="success" fill="outline" expand="full" (click)="complete()">
+            <ion-icon color="success" slot="start" name="checkmark"></ion-icon>
+            Mark Complete
+          </ion-button>
+        </ion-item>
+        <ion-item *ngIf="workoutSession.completed">
+          <ion-button class="centered full-width" size="default" type="button" color="success" fill="solid" expand="full" (click)="complete()">
+            <ion-icon color="light" slot="start" name="checkmark"></ion-icon>
+            Completed
+          </ion-button>
+        </ion-item>
+      </ion-item-group>
+      <ion-item-group
+        *ngIf="transphormer.is_paid_user && transphormer.access_to_gym == true && !workoutSession.completed ">
+        <ion-item
+          *ngIf="!workoutSession.switched_to_home">
+          <ion-button class="centered" type="button" color="tertiary" fill="clear" (click)="switchToHomeWorkout()">
+            <ion-icon name="swap" color="tertiary" slot="start"></ion-icon> Home workout
+          </ion-button>
+        </ion-item>
+      </ion-item-group>
+      <ion-item-group>
+        <ion-item *ngIf="!workoutSession.notes.notes">
+          <ion-button class="centered" type="button" fill="clear" expand="full" (click)="openAddNote()">
+            <ion-icon name="add" slot="start"></ion-icon>
+            Add Workout Notes
+          </ion-button>
+        </ion-item>
+        <ion-item *ngIf="workoutSession.notes.notes" class="workout-name" (click)="openAddNote()">
+          <ion-label>Your Workout Notes</ion-label>
+          <ion-icon float-right color="primary" name="create"></ion-icon>
+        </ion-item>
+        <ion-item class="instructions" *ngIf="workoutSession.notes.notes">
+          <ion-label>
+            {{ workoutSession.notes.notes }}
+          </ion-label>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+  </section>
+  <section class="exercises empty" *ngIf="workoutSession === null">
+    You did not log a workout.
+  </section>
+</ion-content>
+<app-bottom-menu [user]="transphormer"></app-bottom-menu>

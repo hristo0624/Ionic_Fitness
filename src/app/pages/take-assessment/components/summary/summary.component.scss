@@ -1,0 +1,35 @@
+.container {
+  background: #fdfdfd;
+}
+
+.heading {
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 12pt;
+}
+
+.photo-preview {
+  p {
+    margin: 5px 0;
+    font-size: 15px;
+    font-weight: 100;
+  }
+}
+.question-review {
+
+  .question {
+    margin: 15px 0 15px;
+    padding: 15px 10px;
+    border: 1px solid rgba(0,0,0, 0.1);
+    background: white;
+    border-radius: 6px;
+
+    .answer {
+      font-size: 15px;
+      font-weight: 600;
+      padding-top: 10px;
+    }
+  }
+}

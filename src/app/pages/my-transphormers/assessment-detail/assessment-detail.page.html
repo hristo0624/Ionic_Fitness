@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/advisor-assessment-list" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      {{ transphormerName }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="assessment-detail-page" [ngClass]="{ 'message-form-open': messageFormOpen }">
+  <ion-item>
+    <h5 class="semibold" text-center margin-vertical>
+      {{ this.weekStart.format("MMM Do 'YY") }} - {{ this.weekEnd.format("MMM Do 'YY") }}
+    </h5>
+  </ion-item>
+
+  <app-assessment-view [assessment]="assessment">
+  </app-assessment-view>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed" *ngIf="!messageFormOpen">
+    <ion-fab-button color="light">
+      <ion-icon name="arrow-dropleft"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="start">
+      <ion-fab-button color="light" (click)="goToProfile()">
+        <ion-icon name="person"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light" (click)="goToChat()">
+        <ion-icon name="chatboxes"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light" (click)="messageFormOpen = true">
+        <ion-icon name="create"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+
+</ion-content>
+
+<div class="messaging" *ngIf="messageFormOpen">
+  <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+    <div id="message-entry">
+      <ion-textarea [rows]="3" formControlName="message" placeholder="Message"></ion-textarea>
+      <div class="send-cancel-bar">
+        <ion-button type="submit" fill="clear" (click)="messageFormOpen = false">
+          <ion-icon name="close" slot="start"></ion-icon>
+          Cancel
+        </ion-button>
+        <ion-button type="submit" fill="clear" [disabled]="messageForm.invalid">
+          <ion-icon name="send" slot="start"></ion-icon>
+          Send
+        </ion-button>
+      </div>
+    </div>
+  </form>
+</div>

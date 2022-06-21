@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-title>My Transphormation</ion-title>
+    <ion-buttons slot="end">
+      <button class="logo-button" ion-button right>
+        <div class="tb-logo"></div>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-contest-widget
+          *ngIf="transphormer"
+          [updates]="transphormer.last_two_month_updates"
+          [challengeDates]="challengeDates"
+  ></app-contest-widget>
+  <section class="card" *ngIf="transphormer && transphormerDoingCalorieMacroCounting">
+    <div class="header">
+      <div>Macros</div>
+      <div class="dim">Consumed</div>
+    </div>
+    <div class="macros">
+      <app-dashboard-macro [goal]="goalValues.calories" macroType="calories" [macroValue]="displayMacros.calories"></app-dashboard-macro>
+      <app-dashboard-macro [goal]="goalValues.protein" macroType="protein" [macroValue]="displayMacros.protein"></app-dashboard-macro>
+      <app-dashboard-macro [goal]="goalValues.carbs" macroType="carbs" [macroValue]="displayMacros.carbs"></app-dashboard-macro>
+      <app-dashboard-macro [goal]="goalValues.fats" macroType="fats" [macroValue]="displayMacros.fats"></app-dashboard-macro>
+    </div>
+    <ion-button size="large" (click)="goToNutrition()" color="primary" expand="full">
+      + Add Food
+    </ion-button>
+  </section>
+
+  <app-macros-bar *ngIf="transphormer && !transphormerDoingCalorieMacroCounting" [transphormer]="transphormer">
+    <ion-button size="large" margin-top (click)="goToNutrition()" color="primary" expand="full">
+      + Add Food
+    </ion-button>
+  </app-macros-bar>
+
+  <section class="card">
+    <div class="header">
+      <div>Today's Workout</div>
+      <div *ngIf="workoutSession" class="dim ion-text-right">{{workoutSession.workout.name || workoutSession.workout.training.name }}</div>
+    </div>
+    <div class="loading" *ngIf="!workoutSession">
+      <div class="ion-text-center">
+        <ion-spinner name="dots"></ion-spinner>
+      </div>
+    </div>
+    <div *ngIf="workoutSession">
+      <div class="workouts">
+        <div *ngFor="let ws of workoutSummary">
+          <svg [ngClass]="{future: ws.future, completed: ws.completed}" viewBox="0 0 32 32">
+            <circle cx="16" cy="16" r="14" />
+          </svg>
+          <div>{{ws.day}}</div>
+        </div>
+      </div>
+      <ion-button size="large" color="success" expand="full" (click)="goToTrainingProgram()">
+        View Workout
+      </ion-button>
+    </div>
+  </section>
+
+  <section class="padded videos" *ngIf="transphormer">
+    <div *ngIf="!latestVideo">
+      <div class="ion-text-center">
+        <ion-spinner name="dots"></ion-spinner>
+      </div>
+    </div>
+    <div class="video global-margin-top-20" *ngIf="latestVideo" (click)="videoClick()" >
+      <img [src]="latestVideo.thumbnail | safeUrl" alt="">
+      <p class="video-title">{{latestVideo.title}}</p>
+      <div class="overlay" *ngIf="!transphormer.is_paid_user"></div>
+    </div>
+  </section>
+
+  <section class="card" *ngIf="transphormer">
+    <div class="loading" *ngIf="!weights">
+      <ion-spinner name="dots"></ion-spinner>
+    </div>
+    <div *ngIf="weights && startWeight">
+      <div class="header">
+        <div>Weigh-ins</div>
+        <div class="dim">As of {{ currentWeight ? currentWeight.nice_logged_date : 'Now' }}</div>
+      </div>
+      <div class="weigh-ins">
+        <div>
+          <div>start</div>
+          <div>{{ startWeight.weight }}</div>
+        </div>
+        <div>
+          <div>current</div>
+          <div *ngIf="currentWeight">{{ currentWeight.weight }}</div>
+          <div class="dim" *ngIf="!currentWeight">N/A</div>
+        </div>
+        <div>
+          <div>target</div>
+          <div *ngIf="transphormer.goal_weight">{{ transphormer.goal_weight }}</div>
+          <div class="dim" *ngIf="!transphormer.goal_weight">N/A</div>
+        </div>
+      </div>
+    </div>
+    <ion-button size="large" (click)="goToBodyMetrics()" color="primary" expand="full" fill="outline">
+      + Add Weigh-in
+    </ion-button>
+  </section>
+
+  <section class="padded">
+    <ion-button class="purple" size="large" (click)="goToFacebook()" expand="full" fill="outline">
+      <ion-icon name="logo-facebook"></ion-icon>&nbsp;Join Our Group
+    </ion-button>
+  </section>
+
+</ion-content>
+<app-bottom-menu [user]="transphormer"></app-bottom-menu>

@@ -1,0 +1,31 @@
+.photo-review-container {
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .retake-action {
+    --border-width: 1px;
+    --color: black;
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    height: 50px;
+  }
+
+  .next {
+    margin-top: auto;
+  }
+  .active {
+    background: rgba(0,0,0, 0.1);
+  }
+
+  p {
+    font-size: 12pt;
+  }
+}
+
+:root {
+  flex: 1;
+  display: flex;
+  height: 100%;
+}

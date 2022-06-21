@@ -1,0 +1,72 @@
+<div class="flexible-container">
+  <ion-list *ngIf="trainer">
+    <ion-list-header>
+      General
+    </ion-list-header>
+    <ion-item>
+      <ion-icon margin-right name="person" slot="start"></ion-icon>
+      <app-label-value-item title="Name">
+        {{ trainer.transphormer.display_name }}
+      </app-label-value-item>
+    </ion-item>
+    <ion-item *ngIf="trainer.city && trainer.state">
+      <ion-icon margin-right name="pin" slot="start"></ion-icon>
+      <app-label-value-item title="Location">
+        {{ trainer.city }}, {{ trainer.state }} One, Two
+      </app-label-value-item>
+    </ion-item>
+    <ion-item>
+      <ion-icon margin-right name="time" slot="start"></ion-icon>
+      <app-label-value-item title="Years Training">
+        {{ trainer.years_training }}
+      </app-label-value-item>
+    </ion-item>
+    <ion-item>
+      <ion-icon margin-right name="list-box" slot="start"></ion-icon>
+      <app-label-value-item title="Certifications">
+        {{ trainer.certifications }}
+      </app-label-value-item>
+    </ion-item>
+    <ion-button
+      *ngIf="canMessage" (click)="chat()" margin color="primary" class="global-margin-top-20"
+      fill="outline" expand="full">Send Message
+    </ion-button>
+    <ion-list-header>
+      Social Media
+    </ion-list-header>
+    <ion-item *ngIf="trainer.facebook_group" (click)="visitUrl(trainer.facebook_group)">
+      <ion-icon margin-right name="logo-facebook" slot="start"></ion-icon>
+      Facebook Group
+    </ion-item>
+    <ion-item *ngIf="trainer.facebook" (click)="visitFacebook(trainer.facebook)">
+      <ion-icon margin-right name="logo-facebook" slot="start"></ion-icon>
+      {{ trainer.facebook }}
+    </ion-item>
+    <ion-item *ngIf="trainer.instagram" (click)="visitInstagram(trainer.instagram)">
+      <ion-icon margin-right name="logo-instagram" slot="start"></ion-icon>
+      {{ trainer.instagram }}
+    </ion-item>
+    <ion-item *ngIf="trainer.linkedin" (click)="visitLinkedIn(trainer.linkedin)">
+      <ion-icon margin-right name="logo-linkedin" slot="start"></ion-icon>
+      {{ trainer.linkedin }}
+    </ion-item>
+    <ion-item *ngIf="trainer.pintrest" (click)="visitPinterest(trainer.pintrest)">
+      <ion-icon margin-right name="logo-pinterest" slot="start"></ion-icon>
+      {{ trainer.pintrest }}
+    </ion-item>
+    <ion-item *ngIf="trainer.twitter" (click)="visitTwitter(trainer.twitter)">
+      <ion-icon margin-right name="logo-twitter" slot="start"></ion-icon>
+      {{ trainer.twitter }}
+    </ion-item>
+    <ion-item *ngIf="trainer.youtube" (click)="visitYoutube(trainer.youtube)">
+      <ion-icon margin-right name="logo-youtube" slot="start"></ion-icon>
+      {{ trainer.youtube }}
+    </ion-item>
+  </ion-list>
+  <div class="mt-auto">
+    <ion-button
+      (click)="dropAdvisor()" margin color="danger" class="global-margin-top-20"
+      strong="true" expand="full">Drop Advisor
+    </ion-button>
+  </div>
+</div>

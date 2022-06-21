@@ -1,0 +1,27 @@
+.inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todays-weighin {
+  display: flex;
+  align-items: center;
+  color: var(--ion-color-warning-contrast);
+  border: 4px solid var(--ion-color-warning);
+  margin: 20px;
+  background: var(--ion-color-warning-lightest);
+  ion-icon {
+    margin-right: 12px;
+  }
+}
+
+.bottom-btn {
+  margin-top: 20px;
+  bottom: 10px;
+  ion-button {
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+}
+

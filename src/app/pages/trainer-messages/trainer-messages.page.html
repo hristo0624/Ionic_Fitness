@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <app-menu-button></app-menu-button>
+    </ion-buttons>
+    <ion-title>My Advisor Messages</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleUnread()"><ion-icon slot="icon-only"
+              color="primary"
+              [name]="this.unreadOnly ? 'mail-unread' : 'mail'"
+              size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngIf="conversations.length === 0" lines="none">
+      <ion-label text-center>No messages.</ion-label>
+    </ion-item>
+    <ion-item *ngFor="let convo of conversations" (click)="goToMessages(convo.transphormer.id)" [ngClass]="{ 'read': +convo.unread_count === 0, 'unread': +convo.unread_count !== 0}">
+      <ion-icon large slot="start" [name]="(convo.unread_count === 0 ? 'mail' : 'mail-unread')"></ion-icon>
+      <ion-label>
+        <ion-text>{{ convo.transphormer.display_name }}</ion-text>
+        <p><ion-icon size="small" name="share-alt" *ngIf="convo.i_sent_last_message"></ion-icon> {{ convo.last_message_received.message }}</p>
+      </ion-label>
+    </ion-item>
+    <ion-item text-center="">
+      <div class="tb-logo"></div>
+    </ion-item>
+  </ion-list>
+</ion-content>

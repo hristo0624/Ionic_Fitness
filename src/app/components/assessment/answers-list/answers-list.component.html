@@ -1,0 +1,6 @@
+<div *ngIf="responseReports">
+  <div *ngFor="let res of responseReports" class="answer">
+    <h4 class="semibold">{{ res.title }}</h4>
+    <h3 class="semibold">{{ valueForResponse(res).title }}</h3>
+  </div>
+</div>
